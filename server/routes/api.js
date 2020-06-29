@@ -15,6 +15,7 @@ router.get('/',(req, res) => {
     res.send('From API route')
 })
 
+// a register api
 router.post('/register', (req,res) => { // a post request to the endpoint register and get the access and response
     let userData = req.body // extract the user information from the request body
     let user = new User(userData)// cast the userData to Mongo model
@@ -24,6 +25,28 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
         }else {res.status(200).send(registeredUser)} // if success, send the detial for the registered user
     }) // 
 })
+
+//a login api
+router.post('/login',(req,res)=>{
+    let userData = req.body
+    User.findOne({email: userData.email},(error,user) =>{
+        if(error){
+            console.log(error)
+        } else{
+            if(!user){
+                res.status(401).send('Invalid email')
+            }else{
+                if(user.password !== userData.password){
+                    res.status(401).send('Invalid password')
+                } else{res.status(200).send(user)}
+            }
+        }
+    })
+})
+
+
+
 module.exports = router
+
 
 // this is a registration API. extract the userdata from the request object, converted into the model that mongo(database) understand, and save the user into to database
