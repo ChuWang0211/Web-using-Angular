@@ -27,12 +27,13 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
 })
 
 //a login api
-router.post('/login',(req,res)=>{
-    let userData = req.body
-    User.findOne({email: userData.email},(error,user) =>{
-        if(error){
+router.post('/login',(req,res)=>{//make a link to the localhost
+    let userData = req.body //extract the user information from the request body
+    User.findOne({email: userData.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
             console.log(error)
-        } else{
+        } else{// if there is no error, then check if the email and password match. Status is just to report the status as a number 
             if(!user){
                 res.status(401).send('Invalid email')
             }else{
