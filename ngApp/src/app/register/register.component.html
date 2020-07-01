@@ -1,4 +1,4 @@
-<div class="row pt-5"><!-- start with this, "row" is a format, pt-5 means give a padding on the top -->
+<div class="row pt-5"><!-- start with this, "row" is a format, pt-5 means give a padding on the top about 5 pixel or something-->
     <div class="col-md-6 mx-auto"><!-- inside the class "col-md-6 " makes 6 colomns, "mx-auto" makes the text horizontal-->
         <div class="card rounded-0"><!-- the 6 colomns are inside this card rounded-0 which is a layout form used in boostrap-->
             <div class="card-header"><!-- header is the first colonm-->
@@ -8,15 +8,15 @@
                 <form class="form"><!-- form tag which do not need action and can form groups-->
                     <div class="form-group"><!-- first form group-->
                         <label for="">Email</label>
-                        <input type="text" class= "form-control rounded-0" required><!-- input bar -->
+                        <input [(ngModel)]="registerUserData.email" name="email" type="text" class= "form-control rounded-0" required><!-- registerUserData is the object that contains the email and password values of the user about to be resigtered -->
                     </div>
                     <div class="form-group"><!-- second form group-->
                         <label for="">Password</label>
-                        <input type="text" class= "form-control rounded-0" required>
+                        <input [(ngModel)]="registerUserData.password" name="password" type="password" class= "form-control rounded-0" required>
                     </div>
-                    <button type = "button"class="btn btn-primary floar-right">Register</button><!-- button is also in the form but it is not form group, it is single button that takes the colo -->
+                    <button (click)= "registerUser()" type = "button" class="btn btn-primary floar-right">Register</button><!-- button is also in the form but it is not form group, it is single button that takes the colo . (click)="registerUser()" means when the user click on the register botton, it calls registerUser function-->
                 </form>
             </div>
-        </div>
+        </div> 
     </div>
 </div>

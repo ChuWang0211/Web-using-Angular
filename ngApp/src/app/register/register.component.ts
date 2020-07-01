@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  registerUserData = {}// set this empty variable and bind the input 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  registerUser(){//this is the register user method/function.  
+    console.log(this.registerUserData)
+  }
 }
