@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-// const  cors = require('cors')
+const  cors = require('cors')
 
 
 //Error: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:3000/api/register. 
@@ -16,7 +16,7 @@ const api = require('./routes/api')//restore the file address
 
 
 
-// app.use(cors())
+app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/api', api)//add api page to server
