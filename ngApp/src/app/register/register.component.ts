@@ -7,7 +7,7 @@ import {AuthService} from '../auth.service'; // after create the auth service wh
 })
 export class RegisterComponent implements OnInit {
 
-registerUserData = {email: ' ', password: ' '};// set this empty variable and bind the input 
+registerUserData = {email: '', password: ''};// set this empty variable and bind the input 
   constructor(private _auth:AuthService) {// inject the AuthService class which is used to connect the  front and form with the back end api
 
   }
