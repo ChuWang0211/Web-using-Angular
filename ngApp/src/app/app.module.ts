@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthService } from './auth.service';
+import { EventService } from './event.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AuthService } from './auth.service';
     HttpClientModule,// once import on the above, you also need to add it here
     AppRoutingModule
   ],
-  providers: [AuthService],// add the AuthSerice to the  provider array because I coded this class to provide/return the detail of a user information that were submitted from register page and login page
+  providers: [AuthService,EventService],// add the AuthSerice to the  provider array because I coded this class to provide/return the detail of a user information that were submitted from register page and login page
   bootstrap: [AppComponent]
 })
 export class AppModule { }
