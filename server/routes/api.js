@@ -69,6 +69,24 @@ router.get('/events',(req,res)=>{
         "name":"auto expo",
         "description":"lorem ipsum",
         "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"5",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"6",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"7",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
     }
 
 ]
@@ -76,7 +94,7 @@ res.json(events)}
 )
 
 router.get('/special',(req,res)=>{
-    let events = [{
+    let specialEvents = [{
         "_id":"1",
         "name":"auto expo",
         "description":"lorem ipsum",
@@ -99,10 +117,34 @@ router.get('/special',(req,res)=>{
         "name":"auto expo",
         "description":"lorem ipsum",
         "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"5",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"6",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"7",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
+    },
+    {
+        "_id":"8",
+        "name":"auto expo",
+        "description":"lorem ipsum",
+        "date":"2012-04-23T18:25:43.511Z"
     }
 
 ]
-res.json(events)})
+res.json(specialEvents)})
 
 module.exports = router
 

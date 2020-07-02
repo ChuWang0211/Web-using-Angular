@@ -1,1 +1,13 @@
-<p>special-events works!</p>
+<div class="row mt-5"><!-- have a row div class with margin top 5 -->
+    <div class="col-md-6 mb-3" *ngFor="let event of specialEvents"><!-- by default, boostrap have 12 colomn graps, col-md-4 means 4 colomn graps per event layout. in this case, 4/12=3 means 3 events per row -->
+        <!-- ngFor means a for loop that will make a specialEvents array. "let event of events" means for each event in the events array -->
+        <div class="card text-center"><!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
+            <div class="card-body"><!--  in this card, we have a title and a text(you can add more if you want to)-->
+                <h5 class="card-title">{{event.name}}</h5><!-- title  is the name of the event -->
+                <p class ="card-text">{{event.description}}</p><!-- the text is the description of the event -->
+                <a href="#" class="btn btn-success">Buy Tickets</a><!-- a button says buy tickets,btn-success is a color -->
+            </div>
+            <div class="card-footer text-muted"> {{event.data | date:'shortDate' }} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
+        </div>
+    </div>
+</div>

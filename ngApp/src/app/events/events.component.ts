@@ -9,7 +9,7 @@ export class EventsComponent implements OnInit {
   events = []
   constructor(private _eventServive:EventService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this._eventServive.getEvents()
     .subscribe(
       res=>this.events=res,
