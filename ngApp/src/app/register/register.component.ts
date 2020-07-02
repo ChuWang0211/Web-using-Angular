@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{ Router} from '@angular/router';//import the router in order to navigate the from register  to specail event
 import {AuthService} from '../auth.service'; // after create the auth service which is responsable to connect the front and form with the back end api(the AuthService class), we can import it here, therefore, we can connect the service to the compoentn 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,8 @@ import {AuthService} from '../auth.service'; // after create the auth service wh
 export class RegisterComponent implements OnInit {
 
 registerUserData = {email: '', password: ''};// set this empty variable and bind the input 
-  constructor(private _auth:AuthService) {// inject the AuthService class which is used to connect the  front and form with the back end api
-
+  constructor(private _auth:AuthService,private _router: Router) {// inject the AuthService class which is used to connect the  front and form with the back end api
+// inject the router in order to use it for navigation
   }
 
   ngOnInit(): void {
@@ -22,6 +23,7 @@ registerUserData = {email: '', password: ''};// set this empty variable and bind
       res => {
         console.log(res)
         localStorage.setItem('token', res.token) // store the token in the localStorage
+        this._router.navigate(['/special'])// use the router to navigate if register success
       },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
 
