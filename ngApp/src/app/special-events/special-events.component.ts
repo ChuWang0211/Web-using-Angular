@@ -12,7 +12,7 @@ export class SpecialEventsComponent implements OnInit {
   ngOnInit() {
     this._eventServive.getSpecialEvents()
     .subscribe(
-      res=>this.specialEvents=res,
+      res => console.log(res),
       err => console.log(err)
     )
   }
