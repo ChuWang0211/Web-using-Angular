@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')// ".." means one folder up
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 
 //link to my database in MongoDB with username and password
 const connectionString = "mongodb+srv://AngularUser1:AngularUser1@angularsdatabase-kdtrl.azure.mongodb.net/AngularsDatabase?retryWrites=true&w=majority" //6
@@ -22,7 +23,10 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
     user.save((error, registeredUser)=>{ // mongo's way to save posted data
         if(error){ // if error, the log to the console
             console.log(error)
-        }else {res.status(200).send(registeredUser)} // if success, send the detial for the registered user
+        }else {
+            let payload = {subject: registeredUser._id} // use user id which as part of the token
+            let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
+            res.status(200).send({token})} // if success, send the detial for the registered user
     }) // 
 })
 
@@ -39,7 +43,11 @@ router.post('/login',(req,res)=>{//make a link to the localhost
             }else{
                 if(user.password !== userData.password){
                     res.status(401).send('Invalid password')
-                } else{res.status(200).send(user)}
+                } else{
+                    let payload = {subject: user._id} // use user id which as part of the token
+                    let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
+                    res.status(200).send({token})} // if success, send the detial for the registered user
+                   
             }
         }
     })
