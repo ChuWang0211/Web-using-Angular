@@ -10,7 +10,7 @@ export class SpecialEventsComponent implements OnInit {
   constructor(private _eventServive:EventService) { }
 
   ngOnInit() {
-    this._eventServive.getEvents()
+    this._eventServive.getSpecialEvents()
     .subscribe(
       res=>this.specialEvents=res,
       err => console.log(err)

@@ -120,7 +120,7 @@ router.get('/special',(req,res)=>{
     },
     {
         "_id":"5",
-        "name":"auto expo",
+        "name":"auto a",
         "description":"lorem ipsum",
         "date":"2012-04-23T18:25:43.511Z"
     },

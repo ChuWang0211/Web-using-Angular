@@ -7,7 +7,7 @@
                 <p class ="card-text">{{event.description}}</p><!-- the text is the description of the event -->
                 <a href="#" class="btn btn-primary">Buy Tickets</a><!-- a button says buy tickets -->
             </div>
-            <div class="card-footer text-muted"> {{event.data | date:'shortDate'}} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
+            <div class="card-footer text-muted"> {{event.date | date:'shortDate'}} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ export class EventService {
     return this.http.get<any>(this._eventUrl)// get does not need second prameter
   }
 
-  getSpecialvents(){
+  getSpecialEvents(){
     return this.http.get<any>(this.__special_eventUrl)// get does not need second prameter
   }
 
