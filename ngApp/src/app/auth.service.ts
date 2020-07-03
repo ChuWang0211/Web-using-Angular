@@ -19,5 +19,9 @@ export class AuthService { // this is a AuthService class
   loginUser(user){
     return this.http.post<any>(this._loginUrl,user)
   }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')// "!!" means if token exist, return ture else return false
+  }
 }
   

@@ -6,7 +6,7 @@ import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { LoginComponent } from './login/login.component'; // each time we add a component, it automatically imported, but if not, you need to add it
 import { RegisterComponent } from './register/register.component';
-
+import{ AuthGuard} from './auth.guard'  
 
 const routes: Routes = [// routes are array of objects
   { // add one default route
@@ -20,7 +20,8 @@ const routes: Routes = [// routes are array of objects
 },
 {
   path:'special',
-  component: SpecialEventsComponent
+  component: SpecialEventsComponent,
+  canActivate: [AuthGuard]// insert AuthGuard and canActivate to the special event 
 },
 {path:'login',
 component: LoginComponent
