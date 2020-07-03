@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import{ Router} from '@angular/router'
 
 // the auth service contains login and registration
 // making http request
@@ -12,7 +12,8 @@ import {HttpClient} from '@angular/common/http';
 export class AuthService { // this is a AuthService class
   private _registerUrl= "http://localhost:3000/api/register" // this is a variable that stored the backend API url
   private _loginUrl= "http://localhost:3000/api/login"
-  constructor(private http:HttpClient) { }
+  private
+  constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
     return this.http.post<any>(this._registerUrl,user)// in the function, we make a post request and returned the observerable. the first argument is the url, and the second argument is the user object/json 
   } 
@@ -21,11 +22,16 @@ export class AuthService { // this is a AuthService class
     return this.http.post<any>(this._loginUrl,user)
   }
 
+  logoutUser(){ 
+    localStorage.removeItem('token')// if log out, token is removed
+    this._router.navigate(['/events'])// then it is navigate to events page
+  }
   loggedIn(){
     return !!localStorage.getItem('token')// "!!" means if token exist, return ture else return false
   } 
   getToken(){
     return localStorage.getItem('token')
   }
+
 }
   

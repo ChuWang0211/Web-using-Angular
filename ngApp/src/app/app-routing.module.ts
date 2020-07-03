@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component'; // each time we add a 
 import { RegisterComponent } from './register/register.component';
 import{ AuthGuard} from './auth.guard'  
 
+
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
