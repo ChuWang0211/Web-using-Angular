@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http';
+
 
 // the auth service contains login and registration
 // making http request
@@ -22,6 +23,9 @@ export class AuthService { // this is a AuthService class
 
   loggedIn(){
     return !!localStorage.getItem('token')// "!!" means if token exist, return ture else return false
+  }
+  getToken(){
+    return localStorage.getItem('token')
   }
 }
   
