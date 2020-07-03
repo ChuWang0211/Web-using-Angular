@@ -23,7 +23,7 @@ export class AuthService { // this is a AuthService class
 
   loggedIn(){
     return !!localStorage.getItem('token')// "!!" means if token exist, return ture else return false
-  }
+  } 
   getToken(){
     return localStorage.getItem('token')
   }
