@@ -21,7 +21,7 @@
   <ul class="navbar-nav">
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a><!-- -->
-      <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()"(click)="_authService.logoutUser()">Logout</a><!-- show a Logout button if user logged in is true -->
+      <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()"(click)="_authService.logoutUser()">Logout</a> <!-- show a Logout button if user logged in is true -->
     </ul>
 </div>
 </nav>

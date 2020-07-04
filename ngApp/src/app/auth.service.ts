@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import{ Router} from '@angular/router'
+import{ Router} from '@angular/router';
+import { AppComponent } from './app.component';
 
 // the auth service contains login and registration
 // making http request
