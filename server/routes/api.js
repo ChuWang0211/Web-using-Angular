@@ -56,45 +56,27 @@ router.post('/login',(req,res)=>{//make a link to the localhost
 router.get('/events',(req,res)=>{
     let events = [{
         "_id":"1",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Monitor",
+        "description":"A normal functioning ABC brand monitor",
+        "date":"2020-01-23T20:44:36.511Z"
     },
     {
         "_id":"2",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"CPU",
+        "description":"i3-1000U: A CPU that never exists",
+        "date":"1900-05-23T14:26:43.511Z"
     },
     {
         "_id":"3",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"GPU",
+        "description":"RTX 3080 : Show the best graphic you can only imagin in 2040",
+        "date":"2040-04-30T12:15:33.511Z"
     },
     {
         "_id":"4",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"5",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"6",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"7",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Power Unit",
+        "description":"a great power unit that supports 10W, can run a small fan",
+        "date":"1000-23-23T18:25:43.511Z"
     }
 
 ]
@@ -104,51 +86,27 @@ res.json(events)}
 router.get('/special',(req,res)=>{
     let specialEvents = [{
         "_id":"1",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Great Monitor",
+        "description":"A Great functioning ABC brand monitor",
+        "date":"2020-01-23T20:44:36.511Z"
     },
     {
         "_id":"2",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Special CPU",
+        "description":"a Special i3-1000U: A CPU that never exists",
+        "date":"1900-05-23T14:26:43.511Z"
     },
     {
         "_id":"3",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Cool GPU",
+        "description":"RTX 3080 : Show the best Cool graphic you can only imagin in 2040",
+        "date":"2040-04-30T12:15:33.511Z"
     },
     {
         "_id":"4",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"5",
-        "name":"auto a",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"6",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"7",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
-    },
-    {
-        "_id":"8",
-        "name":"auto expo",
-        "description":"lorem ipsum",
-        "date":"2012-04-23T18:25:43.511Z"
+        "name":"Excellent Power Unit",
+        "description":"a Excellent power unit that supports 10W, can run a small fan",
+        "date":"1000-23-23T18:25:43.511Z"
     }
 
 ]
