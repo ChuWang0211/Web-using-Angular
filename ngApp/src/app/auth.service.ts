@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import{ Router} from '@angular/router';
 import { AppComponent } from './app.component';
+import { EventService } from './event.service';
 
 // the auth service contains login and registration
 // making http request
@@ -33,6 +34,10 @@ export class AuthService { // this is a AuthService class
   getToken(){
     return localStorage.getItem('token')
   }
+  // toItemInfo(_id:String){
+  //   console.log("_id")
+  //   this._router.navigate(['/special']) ;
+  // }
 
 }
   

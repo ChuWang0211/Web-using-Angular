@@ -4,8 +4,10 @@
         <div class="card text-center"><!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
             <div class="card-body"><!--  in this card, we have a title and a text(you can add more if you want to)-->
                 <h5 class="card-title">{{event.name}}</h5><!-- title  is the name of the event -->
+                <img src="assets/i3.jpeg" alt="..." class="img-thumbnail">
                 <p class ="card-text">{{event.description}}</p><!-- the text is the description of the event -->
-                <a href="#" class="btn btn-dark">Take a Look</a><!-- a button says buy tickets -->
+                <a class="btn btn-dark text-white" (click) ="toItemInfo($event._id)" >Take a Look</a><!-- a button says buy tickets -->
+                <!--<input id="btntest" class="btn btn-dark" type="button" value="Check" onclick="window.location.href = 'http://www.google.com'" /> -->
             </div>
             <div class="card-footer text-muted"> {{event.date | date:'shortDate'}} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
         </div>

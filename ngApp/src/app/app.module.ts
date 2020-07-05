@@ -13,6 +13,9 @@ import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import{ AuthGuard} from './auth.guard';
 import{TokenInterceptorService} from './token-interceptor.service'
+import{ItemInfoService} from './item-info.service';
+import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
+import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component'
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import{TokenInterceptorService} from './token-interceptor.service'
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    ItemInfoOneComponent,
+    ItemInfoTwoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import{TokenInterceptorService} from './token-interceptor.service'
     HttpClientModule,// once import on the above, you also need to add it here
     AppRoutingModule
   ],
-  providers: [AuthService,EventService, AuthGuard,
+  providers: [AuthService,EventService, AuthGuard,ItemInfoService,
     {provide: HTTP_INTERCEPTORS,// provider array can also be an object
       useClass: TokenInterceptorService,// this object use the class TokenInterceptorService
       multi:true

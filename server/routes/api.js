@@ -112,6 +112,29 @@ router.get('/special',(req,res)=>{
 ]
 res.json(specialEvents)})
 
+router.get('/iteminfo_1',(req,res)=>{
+    let events = [{
+        "_id":"1",
+        "name":"Monitor",
+        "description":"A normal functioning ABC brand monitor",
+        "date":"2020-01-23T20:44:36.511Z"
+    }
+
+]
+res.json(events)}
+)
+
+router.get('/iteminfo_2',(req,res)=>{
+    let events = [    {
+        "_id":"2",
+        "name":"CPU",
+        "description":"i3-1000U: A CPU that never exists",
+        "date":"1900-05-23T14:26:43.511Z"
+    }
+
+]
+res.json(events)}
+)
 module.exports = router
 
 

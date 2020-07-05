@@ -7,6 +7,8 @@ import { SpecialEventsComponent } from './special-events/special-events.componen
 import { LoginComponent } from './login/login.component'; // each time we add a component, it automatically imported, but if not, you need to add it
 import { RegisterComponent } from './register/register.component';
 import{ AuthGuard} from './auth.guard'  
+import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
+import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
 
 
 const routes: Routes = [// routes are array of objects
@@ -18,6 +20,12 @@ const routes: Routes = [// routes are array of objects
 {
   path:'events',
   component: EventsComponent 
+},{
+  path:'iteminfo_1',
+  component:ItemInfoOneComponent
+},{
+  path:'iteminfo_2',
+  component:ItemInfoTwoComponent
 },
 {
   path:'special',
