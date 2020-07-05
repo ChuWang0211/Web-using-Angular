@@ -19,10 +19,10 @@ export class EventsComponent implements OnInit {
       err => console.log(err)
     )
   }
-  toItemInfo(_id:String){
-
+  toItemInfo(_id:any){
+    console.log(_id)
     this._router.navigate(['/iteminfo_1']) 
-        console.log("_id")
+
   }
 
 }

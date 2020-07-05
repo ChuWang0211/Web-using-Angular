@@ -18,4 +18,7 @@ export class ItemInfoTwoComponent implements OnInit {
       err => console.log(err)
     )
   }
+  getBack(){
+    this._router.navigate(['/special'])
+  }
 }

@@ -58,25 +58,29 @@ router.get('/events',(req,res)=>{
         "_id":"1",
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
-        "date":"2020-01-23T20:44:36.511Z"
+        "date":"2020-01-23T20:44:36.511Z",
+        "imageUrl":"assets/monitor.jpg"
     },
     {
         "_id":"2",
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
-        "date":"1900-05-23T14:26:43.511Z"
+        "date":"1900-05-23T14:26:43.511Z",
+        "imageUrl":"./assets/i3.jpeg"
     },
     {
         "_id":"3",
         "name":"GPU",
         "description":"RTX 3080 : Show the best graphic you can only imagin in 2040",
-        "date":"2040-04-30T12:15:33.511Z"
+        "date":"2040-04-30T12:15:33.511Z",
+        "imageUrl":"assets/GPU.jpg"
     },
     {
         "_id":"4",
         "name":"Power Unit",
         "description":"a great power unit that supports 10W, can run a small fan",
-        "date":"1000-23-23T18:25:43.511Z"
+        "date":"1000-23-23T18:25:43.511Z",
+        "imageUrl":"assets/powerunit.png"
     }
 
 ]
@@ -86,50 +90,56 @@ res.json(events)}
 router.get('/special',(req,res)=>{
     let specialEvents = [{
         "_id":"1",
-        "name":"Great Monitor",
-        "description":"A Great functioning ABC brand monitor",
-        "date":"2020-01-23T20:44:36.511Z"
+        "name":"Monitor",
+        "description":"A normal functioning ABC brand monitor",
+        "date":"2020-01-23T20:44:36.511Z",
+        "imageUrl":"assets/monitor.jpg"
     },
     {
         "_id":"2",
-        "name":"Special CPU",
-        "description":"a Special i3-1000U: A CPU that never exists",
-        "date":"1900-05-23T14:26:43.511Z"
+        "name":"CPU",
+        "description":"i3-1000U: A CPU that never exists",
+        "date":"1900-05-23T14:26:43.511Z",
+        "imageUrl":"./assets/i3.jpeg"
     },
     {
         "_id":"3",
-        "name":"Cool GPU",
-        "description":"RTX 3080 : Show the best Cool graphic you can only imagin in 2040",
-        "date":"2040-04-30T12:15:33.511Z"
+        "name":"GPU",
+        "description":"RTX 3080 : Show the best graphic you can only imagin in 2040",
+        "date":"2040-04-30T12:15:33.511Z",
+        "imageUrl":"assets/GPU.jpg"
     },
     {
         "_id":"4",
-        "name":"Excellent Power Unit",
-        "description":"a Excellent power unit that supports 10W, can run a small fan",
-        "date":"1000-23-23T18:25:43.511Z"
+        "name":"Power Unit",
+        "description":"a great power unit that supports 10W, can run a small fan",
+        "date":"1000-23-23T18:25:43.511Z",
+        "imageUrl":"assets/powerunit.png"
     }
 
 ]
 res.json(specialEvents)})
 
-router.get('/iteminfo_1',(req,res)=>{
-    let events = [{
+router.get('/iteminfo_1',(req,res)=>{[
+    {
         "_id":"1",
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
-        "date":"2020-01-23T20:44:36.511Z"
+        "date":"2020-01-23T20:44:36.511Z",
+        "imageUrl":"assets/monitor.jpg"
     }
 
 ]
 res.json(events)}
 )
 
-router.get('/iteminfo_2',(req,res)=>{
-    let events = [    {
+router.get('/iteminfo_2',(req,res)=>{[
+    {
         "_id":"2",
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
-        "date":"1900-05-23T14:26:43.511Z"
+        "date":"1900-05-23T14:26:43.511Z",
+        "imageUrl":"./assets/i3.jpeg"
     }
 
 ]

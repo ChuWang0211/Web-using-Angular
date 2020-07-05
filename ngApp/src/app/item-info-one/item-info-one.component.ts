@@ -19,7 +19,7 @@ export class ItemInfoOneComponent implements OnInit {
   }
 
   getBack(){
-    this._router.navigate(['/iteminfo_1']) 
+    this._router.navigate(['/events']) 
   }
 
 }
