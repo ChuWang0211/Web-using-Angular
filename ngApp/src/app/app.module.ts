@@ -16,7 +16,8 @@ import{TokenInterceptorService} from './token-interceptor.service'
 import{ItemInfoService} from './item-info.service';
 import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
 import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
-import { StorePageComponent } from './store-page/store-page.component'
+import { StorePageComponent } from './store-page/store-page.component';
+import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component'
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { StorePageComponent } from './store-page/store-page.component'
     SpecialEventsComponent,
     ItemInfoOneComponent,
     ItemInfoTwoComponent,
-    StorePageComponent
+    StorePageComponent,
+    StoreItemDetailComponent
   ],
   imports: [
     BrowserModule,

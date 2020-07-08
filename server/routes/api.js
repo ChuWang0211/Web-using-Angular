@@ -120,43 +120,64 @@ router.get('/special',(req,res)=>{
 ]
 res.json(specialEvents)})
 
-router.get('/iteminfo_1',(req,res)=>{[
-    {
+router.get('/iteminfo_1',(req,res)=>{
+    let itemInfo_1 = [{
         "_id":"1",
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
         "date":"2020-01-23T20:44:36.511Z",
         "imageUrl":"assets/monitor.jpg"
-    }
+    }]
+res.json(itemInfo_1)})
 
-]
-res.json(events)}
-)
-
-router.get('/iteminfo_2',(req,res)=>{[
-    {
+router.get('/iteminfo_2',(req,res)=>{
+    let itemInfo_2 =[
+     {
         "_id":"2",
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
         "date":"1900-05-23T14:26:43.511Z",
         "imageUrl":"./assets/i3.jpeg"
-    }
+    }]
+res.json(itemInfo_2)})
 
-]
-res.json(events)}
-)
 router.get('/storePage',(req,res)=>{
-    [
+    let storePage =[
         {
             "_id":"2",
             "name":"CPU",
             "description":"i3-1000U: A CPU that never exists",
             "date":"1900-05-23T14:26:43.511Z",
-            "imageUrl":"./assets/i3.jpeg"
-        }
-    
-    ]
-})
+            "imageUrl":"./assets/i3.jpeg",
+            "price":"2.2"
+        },{
+            "_id":"2",
+            "name":"CPU",
+            "description":"i3-1000U: A CPU that never exists",
+            "date":"1900-05-23T14:26:43.511Z",
+            "imageUrl":"./assets/i3.jpeg",
+            "price":"2.4"
+        }]
+    res.json(storePage)})
+
+    router.get('/storeItemDetail',(req,res)=>{
+        let storeItemDetail =[
+            {
+                "_id":"2",
+                "name":"CPU",
+                "description":"i3-1000U: A CPU that never exists",
+                "date":"1900-05-23T14:26:43.511Z",
+                "imageUrl":"./assets/i3.jpeg",
+                "price":"2.2"
+            },{
+                "_id":"2",
+                "name":"CPU",
+                "description":"i3-1000U: A CPU that never exists",
+                "date":"1900-05-23T14:26:43.511Z",
+                "imageUrl":"./assets/i3.jpeg",
+                "price":"2.2"
+            }]
+        res.json(storeItemDetail)})
 module.exports = router
 
 

@@ -10,7 +10,8 @@ import{ AuthGuard} from './auth.guard'
 import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
 import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
 import{StorePageComponent} from './store-page/store-page.component'
-
+import{StoreItemDetailComponent} from './store-item-detail/store-item-detail.component'
+import { from } from 'rxjs';
 
 const routes: Routes = [// routes are array of objects
   { // add one default route
@@ -43,6 +44,10 @@ component: LoginComponent
 {
   path:'storePage',
   component:StorePageComponent
+},
+{
+  path:'storeItemDetail',
+  component:StoreItemDetailComponent
 }
 ];
 

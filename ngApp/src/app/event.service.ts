@@ -8,6 +8,7 @@ export class EventService {
   private _eventUrl = "http://localhost:3000/api/events"
   private __special_eventUrl= "http://localhost:3000/api/special"
   private _storePageUrl = "http://localhost:3000/api/storePage"
+  private _storeItemDetail = "http://localhost:3000/api/storeItemDetail"
 
   constructor(private http:HttpClient,private _router: Router) { }
 
@@ -21,4 +22,8 @@ export class EventService {
   getStorePage(){
     return this.http.get<any>(this._storePageUrl)// get does not need second prameter
   }
+  getStoreItemDetail(){
+    return this.http.get<any>(this._storeItemDetail)
+  }
 }
+
