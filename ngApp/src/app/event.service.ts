@@ -7,6 +7,7 @@ import{ Router} from '@angular/router';
 export class EventService {
   private _eventUrl = "http://localhost:3000/api/events"
   private __special_eventUrl= "http://localhost:3000/api/special"
+  private _storePageUrl = "http://localhost:3000/api/storePage"
 
   constructor(private http:HttpClient,private _router: Router) { }
 
@@ -16,5 +17,8 @@ export class EventService {
 
   getSpecialEvents(){
     return this.http.get<any>(this.__special_eventUrl)// get does not need second prameter
+  }
+  getStorePage(){
+    return this.http.get<any>(this._storePageUrl)// get does not need second prameter
   }
 }

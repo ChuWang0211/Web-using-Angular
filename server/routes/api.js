@@ -145,6 +145,18 @@ router.get('/iteminfo_2',(req,res)=>{[
 ]
 res.json(events)}
 )
+router.get('/storePage',(req,res)=>{
+    [
+        {
+            "_id":"2",
+            "name":"CPU",
+            "description":"i3-1000U: A CPU that never exists",
+            "date":"1900-05-23T14:26:43.511Z",
+            "imageUrl":"./assets/i3.jpeg"
+        }
+    
+    ]
+})
 module.exports = router
 
 

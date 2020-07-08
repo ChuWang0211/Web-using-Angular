@@ -17,6 +17,9 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/special" routerLinkActive="active">Special Trash</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/storePage" routerLinkActive="active">Store</a>
+    </li>
   </ul>
   <ul class="navbar-nav">
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->

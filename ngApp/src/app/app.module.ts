@@ -15,7 +15,8 @@ import{ AuthGuard} from './auth.guard';
 import{TokenInterceptorService} from './token-interceptor.service'
 import{ItemInfoService} from './item-info.service';
 import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
-import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component'
+import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
+import { StorePageComponent } from './store-page/store-page.component'
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component'
     EventsComponent,
     SpecialEventsComponent,
     ItemInfoOneComponent,
-    ItemInfoTwoComponent
+    ItemInfoTwoComponent,
+    StorePageComponent
   ],
   imports: [
     BrowserModule,

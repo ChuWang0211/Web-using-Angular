@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import{ AuthGuard} from './auth.guard'  
 import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
 import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
+import{StorePageComponent} from './store-page/store-page.component'
 
 
 const routes: Routes = [// routes are array of objects
@@ -38,6 +39,10 @@ component: LoginComponent
 {
   path:'register',
   component:RegisterComponent
+},
+{
+  path:'storePage',
+  component:StorePageComponent
 }
 ];
 
