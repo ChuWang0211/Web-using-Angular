@@ -6,8 +6,20 @@ import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { LoginComponent } from './login/login.component'; // each time we add a component, it automatically imported, but if not, you need to add it
 import { RegisterComponent } from './register/register.component';
+<<<<<<< Updated upstream
 
 
+=======
+import{ AuthGuard} from './auth.guard'  
+import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
+import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
+import{StorePageComponent} from './store-page/store-page.component'
+import{StoreItemDetailComponent} from './store-item-detail/store-item-detail.component'
+import { from } from 'rxjs';
+import {StripeCheckoutModule} from 'ng-stripe-checkout';
+import {BrowserModule} from '@angular/platform-browser';
+import { StripeCheckOutComponent } from './stripe-check-out/stripe-check-out.component';
+>>>>>>> Stashed changes
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
@@ -28,11 +40,27 @@ component: LoginComponent
 {
   path:'register',
   component:RegisterComponent
+<<<<<<< Updated upstream
+=======
+},
+{
+  path:'storePage',
+  component:StorePageComponent
+},
+{
+  path:'storeItemDetail',
+  component:StoreItemDetailComponent
+},{
+  path:'stripePayment',
+  component:StripeCheckOutComponent
+>>>>>>> Stashed changes
 }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),BrowserModule,
+    StripeCheckoutModule,],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

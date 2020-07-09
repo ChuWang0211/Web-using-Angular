@@ -45,6 +45,28 @@ router.post('/login',(req,res)=>{//make a link to the localhost
     })
 })
 
+router.post('/stripePayment',(req,res)=>{//make a link to the localhost
+    let userData = req.body //extract the user information from the request body
+    User.findOne({email: userData.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{// if there is no error, then check if the email and password match. Status is just to report the status as a number 
+            if(!user){
+                res.status(401).send('Invalid email')
+            }else{
+                if(user.password !== userData.password){
+                    res.status(401).send('Invalid password')
+                } else{
+                    let payload = {subject: user._id} // use user id which as part of the token
+                    let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
+                    res.status(200).send({token})} // if success, send the detial for the registered user
+                   
+            }
+        }
+    })
+})
+
 router.get('/events',(req,res)=>{
     let events = [{
         "_id":"1",

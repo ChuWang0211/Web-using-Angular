@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const  cors = require('cors')
+const stripe = require('stripe')('sk_test_...');
 
 
 //Error: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:3000/api/register. 

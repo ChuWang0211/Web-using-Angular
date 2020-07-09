@@ -9,6 +9,20 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthService } from './auth.service';
+<<<<<<< Updated upstream
+=======
+import { EventService } from './event.service';
+import{ AuthGuard} from './auth.guard';
+import{TokenInterceptorService} from './token-interceptor.service'
+import{ItemInfoService} from './item-info.service';
+import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
+import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
+import { StorePageComponent } from './store-page/store-page.component';
+import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component';
+import { StripeCheckOutComponent } from './stripe-check-out/stripe-check-out.component';
+
+
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -16,7 +30,17 @@ import { AuthService } from './auth.service';
     RegisterComponent,
     LoginComponent,
     EventsComponent,
+<<<<<<< Updated upstream
     SpecialEventsComponent
+=======
+    SpecialEventsComponent,
+    ItemInfoOneComponent,
+    ItemInfoTwoComponent,
+    StorePageComponent,
+    StoreItemDetailComponent,
+    StripeCheckOutComponent,
+
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
