@@ -3,10 +3,10 @@
         <!-- ngFor means a for loop that will make a specialEvents array. "let event of events" means for each event in the events array -->
         <div class="card text-center"><!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
             <div class="card-body"><!--  in this card, we have a title and a text(you can add more if you want to)-->
-                <h5 class="card-title">Name</h5><!-- title  is the name of the event -->
+                <h5 class="card-title">{{itemDetail.name}}</h5><!-- title  is the name of the event -->
                 <img src="assets/monitor.jpg" width="200" height="200" alt="Monitor" class="img-thumbnail">
-                <p class ="card-text">description</p><!-- the text is the description of the event -->
-                <a class="btn btn-danger text-white" (click)="getBack()"> Buy</a><!-- a button says buy tickets,btn-success is a color -->
+                <p class ="card-text">{{itemDetail.description}}</p><!-- the text is the description of the event -->
+                <a class="btn btn-danger text-white" (click)="putItemInCart(itemDetail._id)"> Put in Cart</a><!-- a button says buy tickets,btn-success is a color -->
             </div>
             <div class="card-footer text-muted"> Date</div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
         </div>

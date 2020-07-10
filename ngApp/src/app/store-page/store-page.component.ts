@@ -9,6 +9,7 @@ import{ Router} from '@angular/router';
 })
 export class StorePageComponent implements OnInit {
   storePage = []
+  count=0;
   constructor(private _eventServive:EventService,private _authService: AuthService, private _router:Router) { }
 
   ngOnInit(){
@@ -18,10 +19,12 @@ export class StorePageComponent implements OnInit {
       err => console.log(err)
     )
   }
-  toStoreItemInfo(_id:String){
-
+  toStoreItemInfo(_id:string){
+    localStorage.setItem("idItemDetail",_id)
     this._router.navigate(['/storeItemDetail']) 
-        console.log("_id")
+        console.log(_id)
+
+        
   }
 
 }
