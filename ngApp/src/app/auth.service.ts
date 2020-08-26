@@ -15,6 +15,7 @@ export class AuthService { // this is a AuthService class
   private _registerUrl= "http://localhost:3000/api/register" // this is a variable that stored the backend API url
   private _loginUrl= "http://localhost:3000/api/login"
   private _addItemToCart= "http://localhost:3000/api/cart"
+  private _addCartToDatabase= "http://localhost:3000/api/addCartToDatabase"
   private
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
@@ -43,12 +44,9 @@ export class AuthService { // this is a AuthService class
     console.log(itemInfo)
     return this.http.post<any>(this._addItemToCart,itemInfo)
   }
-
-
-  // toItemInfo(_id:String){
-  //   console.log("_id")
-  //   this._router.navigate(['/special']) ;
-  // }
-
+  addToDatavase(userObject){
+    console.log(userObject)
+    return this.http.post<any>(this._addCartToDatabase,userObject)
+  }
 }
   

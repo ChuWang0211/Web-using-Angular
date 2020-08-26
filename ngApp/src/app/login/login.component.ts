@@ -7,7 +7,7 @@ import{ Router} from '@angular/router';// import the router in order to navigate
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserData={email: '', password: ''};
+  loginUserData={email: '', password: '', cart:[], history:[]};
   constructor(private _auth:AuthService, private _router: Router) { }// inject the router in order to use it for navigation
 
   ngOnInit(): void {

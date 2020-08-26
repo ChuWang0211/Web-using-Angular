@@ -18,7 +18,8 @@ import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
 import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
 import { StorePageComponent } from './store-page/store-page.component';
 import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component';
-import { CartComponent } from './cart/cart.component'
+import { CartComponent } from './cart/cart.component';
+import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-database.component'
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CartComponent } from './cart/cart.component'
     ItemInfoTwoComponent,
     StorePageComponent,
     StoreItemDetailComponent,
-    CartComponent
+    CartComponent,
+    AddCartToDatabaseComponent
   ],
   imports: [
     BrowserModule,

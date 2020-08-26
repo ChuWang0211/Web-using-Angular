@@ -59,8 +59,23 @@ router.post('/cart', (req,res) => { // a post request to the endpoint register a
                
         }
     }
-})})
-//a login api
+})
+})
+
+router.post('/addCartToDatabase',  function(req,res,next){ // a post request to the endpoint register and get the access and response
+    let newData = req.body
+    User.findById(req.body._id, function(err, author) {
+        if (err) throw err;
+         
+        author.cart = req.body.cart;
+         
+        author.save(function(err) {
+            if (err) throw err;
+             
+            console.log('Author updated successfully');
+        });
+    });
+});
 
 router.post('/login',(req,res)=>{//make a link to the localhost
     let userData = req.body //extract the user information from the request body

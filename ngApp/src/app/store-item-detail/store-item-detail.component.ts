@@ -11,11 +11,10 @@ export class StoreItemDetailComponent implements OnInit {
   itemId = ""
   storeItemDetail = []
   itemDetail=[]
+  obj = {}
   token_with_iteminfo={token: '', iteminfo: ''}
   constructor(private _eventServive:EventService,private _auth: AuthService, private _router:Router) {
-
   }
-
 ngOnInit() {
   this.itemId =this._auth.getItemId()
   this._eventServive.getEvents()
@@ -34,13 +33,12 @@ ngOnInit() {
       },
       err => console.log(err)
     )
-
-  
 }
 getBack(){
   this._router.navigate(['/storePage'])
 }
 putItemInCart(itemId){
+
   console.log(itemId)
   // console.log(this.itemDetail[0])
  this.token_with_iteminfo.iteminfo=this.itemDetail[0]
@@ -49,10 +47,28 @@ putItemInCart(itemId){
    .subscribe( // uses observiable //when using ths obserable, we either get a response or error
       res => {
         console.log(res)
+        this.obj={}
+        this.obj=Object.assign({},res)
+        if( this.obj['cart']==[]){        
+          this.obj['cart'].push(this.itemDetail[0])
+          console.log(this.obj)
+          this._auth.addToDatavase(this.obj)
+        }
+          else { this.obj['cart'].push(this.itemDetail[0])
+          console.log(this.obj)
+          this._auth.addToDatavase(this.obj)
+          .subscribe(
+            res => {
+              console.log(res)}
+          )
+        }
+
+
+        
       },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
-
-  // localStorage.log('item',itemId)
-   )}
+      )
+    }
+   
 
 }

@@ -13,6 +13,7 @@ import{StorePageComponent} from './store-page/store-page.component'
 import{StoreItemDetailComponent} from './store-item-detail/store-item-detail.component'
 import { from } from 'rxjs';
 import { CartComponent } from './cart/cart.component';
+import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-database.component';
 
 const routes: Routes = [// routes are array of objects
   { // add one default route
@@ -53,6 +54,9 @@ component: LoginComponent
 {
   path:'cart',
   component:CartComponent
+},{
+  path:'addCartToDatabase',
+  component:AddCartToDatabaseComponent
 }
 
 ];

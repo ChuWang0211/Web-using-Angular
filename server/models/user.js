@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     email: String,
     password: String,
-    cart: String,
-    history: String
+    cart: Array,
+    history: Array
 })
 module.exports = mongoose.model('user',userSchema,'AngularUsers')
 // this now can read delete update documents in the mongoose database
