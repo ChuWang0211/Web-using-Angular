@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../models/user')// ".." means one folder up
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
-
+const user = require('../models/user')
 //link to my database in MongoDB with username and password
 const connectionString = "mongodb+srv://AngularUser1:AngularUser1@angularsdatabase-kdtrl.azure.mongodb.net/AngularsDatabase?retryWrites=true&w=majority" //6
 mongoose.connect(connectionString, { useNewUrlParser:true,useUnifiedTopology: true },err =>{//connect and action if error occur
@@ -11,7 +11,7 @@ mongoose.connect(connectionString, { useNewUrlParser:true,useUnifiedTopology: tr
         console.error('Error'+err)
     }else{console.log('connected to mongodb')}
 })
-
+token_email = ""
 router.get('/',(req, res) => {
     res.send('From API route')
 })
@@ -24,13 +24,44 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
         if(error){ // if error, the log to the console
             console.log(error)
         }else {
+            let userName = userData.email
             let payload = {subject: registeredUser._id} // use user id which as part of the token
             let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
-            res.status(200).send({token})} // if success, send the detial for the registered user
+            // let token_ts = registeredUser._id
+            // let token_email = {"token":token, "email":userData.email}
+            // let token_email = token.toString()+":"+userData.email.toString();
+            let token_email = {token,userName};
+            res.status(200).send({token_email})} // if success, send the detial for the registered user
     }) // 
 })
 
+router.post('/cart', (req,res) => { // a post request to the endpoint register and get the access and response
+    let itemData = req.body // extract the user information from the request body
+    let token = itemData.token
+    var obj = JSON.parse(token);
+    // user.findById(ObjectId(itemData))
+    // .then(doc => {
+    //     console.log(doc);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    User.findOne({email: obj.userName},(error,userCart) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{
+            // var a =  obj.userName
+            if(userCart.email!== obj.userName){
+                res.status(402).send('user does not register')
+            }else{ 
+                res.status(200).send(userCart) //send token back, can use subscribe }
+               
+        }
+    }
+})})
 //a login api
+
 router.post('/login',(req,res)=>{//make a link to the localhost
     let userData = req.body //extract the user information from the request body
     User.findOne({email: userData.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
@@ -39,19 +70,21 @@ router.post('/login',(req,res)=>{//make a link to the localhost
             console.log(error)
         } else{// if there is no error, then check if the email and password match. Status is just to report the status as a number 
             if(!user){
-                res.status(401).send('Invalid email')
+                res.status(402).send('Invalid email')
             }else{
                 if(user.password !== userData.password){
                     res.status(401).send('Invalid password')
                 } else{
+                    let userName = userData.email
                     let payload = {subject: user._id} // use user id which as part of the token
                     let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
-                    res.status(200).send({token})} // if success, send the detial for the registered user
+                    res.status(200).send({token,userName})} // if success, send the detial for the registered user
                    
             }
         }
     })
 })
+
 
 router.get('/events',(req,res)=>{
     let events = [{

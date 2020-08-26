@@ -17,7 +17,8 @@ import{ItemInfoService} from './item-info.service';
 import { ItemInfoOneComponent } from './item-info-one/item-info-one.component';
 import { ItemInfoTwoComponent } from './item-info-two/item-info-two.component';
 import { StorePageComponent } from './store-page/store-page.component';
-import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component'
+import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component';
+import { CartComponent } from './cart/cart.component'
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.
     ItemInfoOneComponent,
     ItemInfoTwoComponent,
     StorePageComponent,
-    StoreItemDetailComponent
+    StoreItemDetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

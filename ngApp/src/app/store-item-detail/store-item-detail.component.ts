@@ -11,12 +11,13 @@ export class StoreItemDetailComponent implements OnInit {
   itemId = ""
   storeItemDetail = []
   itemDetail=[]
-  constructor(private _eventServive:EventService,private _authService: AuthService, private _router:Router) {
+  token_with_iteminfo={token: '', iteminfo: ''}
+  constructor(private _eventServive:EventService,private _auth: AuthService, private _router:Router) {
 
   }
 
 ngOnInit() {
-  this.itemId=localStorage.getItem('idItemDetail')
+  this.itemId =this._auth.getItemId()
   this._eventServive.getEvents()
     .subscribe(
       res=>{
@@ -39,9 +40,19 @@ ngOnInit() {
 getBack(){
   this._router.navigate(['/storePage'])
 }
-putItemInCart(){
-  console.log(this.itemDetail)
+putItemInCart(itemId){
+  console.log(itemId)
+  // console.log(this.itemDetail[0])
+ this.token_with_iteminfo.iteminfo=this.itemDetail[0]
+ this.token_with_iteminfo.token = localStorage.getItem("token")
+  this._auth.putItemIntoCart(this.token_with_iteminfo)
+   .subscribe( // uses observiable //when using ths obserable, we either get a response or error
+      res => {
+        console.log(res)
+      },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
+      err =>console.log(err)// if get error, when show something to indicate the error
 
-}
+  // localStorage.log('item',itemId)
+   )}
 
 }

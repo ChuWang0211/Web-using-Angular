@@ -14,6 +14,7 @@ import { EventService } from './event.service';
 export class AuthService { // this is a AuthService class
   private _registerUrl= "http://localhost:3000/api/register" // this is a variable that stored the backend API url
   private _loginUrl= "http://localhost:3000/api/login"
+  private _addItemToCart= "http://localhost:3000/api/cart"
   private
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
@@ -26,6 +27,7 @@ export class AuthService { // this is a AuthService class
 
   logoutUser(){ 
     localStorage.removeItem('token')// if log out, token is removed
+    localStorage.removeItem('email')
     this._router.navigate(['/events'])// then it is navigate to events page
   }
   loggedIn(){
@@ -34,6 +36,15 @@ export class AuthService { // this is a AuthService class
   getToken(){
     return localStorage.getItem('token')
   }
+  getItemId(){
+  return localStorage.getItem('idItemDetail')
+  }
+  putItemIntoCart(itemInfo){
+    console.log(itemInfo)
+    return this.http.post<any>(this._addItemToCart,itemInfo)
+  }
+
+
   // toItemInfo(_id:String){
   //   console.log("_id")
   //   this._router.navigate(['/special']) ;
