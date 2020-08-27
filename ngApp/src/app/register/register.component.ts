@@ -22,16 +22,8 @@ registerUserData = {email: '', password: '', cart:[], history:[]};// set this em
     .subscribe( // uses observiable //when using ths obserable, we either get a response or error
       res => {
         console.log(res)
-        // localStorage.setItem('token', res.get("token")) // store the token in the localStorage
-        // localStorage.setItem('userName', res.get("email"))
-        // var spliting = JSON.stringify(res).toString().split(":");
-        // let token = spliting[1]
-        // let email = spliting[2]
-        // console.log(token+email)
-        // localStorage.setItem('token', token) // store the token in the localStorage
-        // localStorage.setItem('userName', email)
         localStorage.setItem('token', JSON.stringify(res)) 
-        this._router.navigate(['/special'])// use the router to navigate if register success
+        this._router.navigate(['/login'])// use the router to navigate if register success
       },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
 

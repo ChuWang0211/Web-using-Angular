@@ -49,26 +49,32 @@ putItemInCart(itemId){
         console.log(res)
         this.obj={}
         this.obj=Object.assign({},res)
-        if( this.obj['cart']==[]){        
+        // var obj = JSON.parse(this.obj);
+        if( res.cart.length==0){        
           this.obj['cart'].push(this.itemDetail[0])
-          console.log(this.obj)
-          this._auth.addToDatavase(this.obj)
-        }
-          else { this.obj['cart'].push(this.itemDetail[0])
-          console.log(this.obj)
           this._auth.addToDatavase(this.obj)
           .subscribe(
             res => {
-              console.log(res)}
-          )
+              console.log(res)})
         }
-
-
-        
-      },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
-      err =>console.log(err)// if get error, when show something to indicate the error
-      )
-    }
-   
-
-}
+          else { 
+            var i;
+            var amount=0;
+            for (i = 0; i < res.cart.length; i++) {
+              if(this.itemDetail[0]._id==this.obj['cart'][i]._id){
+                amount=parseInt(this.obj['cart'][i].amount)+1
+                this.obj['cart'][i]["amount"]=amount
+                this._auth.addToDatavase(this.obj)
+                .subscribe(
+                  res => {
+                    console.log(res)})
+              }
+              else{
+                this.obj['cart'].push(this.itemDetail[0])
+                console.log(this.obj)
+                this._auth.addToDatavase(this.obj)
+                .subscribe(
+                  res => {
+                    console.log(res)}
+                    )}}}},err =>console.log(err)// if get error, when show something to indicate the error
+      )}}

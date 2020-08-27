@@ -28,7 +28,6 @@ export class AuthService { // this is a AuthService class
 
   logoutUser(){ 
     localStorage.removeItem('token')// if log out, token is removed
-    localStorage.removeItem('email')
     this._router.navigate(['/events'])// then it is navigate to events page
   }
   loggedIn(){
@@ -47,6 +46,10 @@ export class AuthService { // this is a AuthService class
   addToDatavase(userObject){
     console.log(userObject)
     return this.http.post<any>(this._addCartToDatabase,userObject)
+  }
+
+  getCart(token){
+    return  this.http.post<any>(this._addItemToCart,token)
   }
 }
   

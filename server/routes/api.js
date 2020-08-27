@@ -24,7 +24,7 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
         if(error){ // if error, the log to the console
             console.log(error)
         }else {
-            let userName = userData.email
+            let userName = {subject: registeredUser.email}
             let payload = {subject: registeredUser._id} // use user id which as part of the token
             let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
             // let token_ts = registeredUser._id
@@ -39,13 +39,6 @@ router.post('/cart', (req,res) => { // a post request to the endpoint register a
     let itemData = req.body // extract the user information from the request body
     let token = itemData.token
     var obj = JSON.parse(token);
-    // user.findById(ObjectId(itemData))
-    // .then(doc => {
-    //     console.log(doc);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
     User.findOne({email: obj.userName},(error,userCart) =>{ // find the user who has the extractly same email ID as the request email ID, 
         //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
         if(error){ // if there is an error, console.log(error)
@@ -66,13 +59,14 @@ router.post('/addCartToDatabase',  function(req,res,next){ // a post request to 
     let newData = req.body
     User.findById(req.body._id, function(err, author) {
         if (err) throw err;
-         
         author.cart = req.body.cart;
-         
+        author.email = req.body.email;
+        author.history = req.body.history;
+        author.password = req.body.password;
         author.save(function(err) {
             if (err) throw err;
              
-            console.log('Author updated successfully');
+            console.log('updated successfully');
         });
     });
 });
@@ -100,35 +94,38 @@ router.post('/login',(req,res)=>{//make a link to the localhost
     })
 })
 
-
 router.get('/events',(req,res)=>{
     let events = [{
         "_id":"1",
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
         "date":"2020-01-23T20:44:36.511Z",
-        "imageUrl":"assets/monitor.jpg"
+        "imageUrl":"assets/monitor.jpg",
+        "amount":1
     },
     {
         "_id":"2",
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
         "date":"1900-05-23T14:26:43.511Z",
-        "imageUrl":"./assets/i3.jpeg"
+        "imageUrl":"./assets/i3.jpeg",
+        "amount":1
     },
     {
         "_id":"3",
         "name":"GPU",
         "description":"RTX 3080 : Show the best graphic you can only imagin in 2040",
         "date":"2040-04-30T12:15:33.511Z",
-        "imageUrl":"assets/GPU.jpg"
+        "imageUrl":"assets/GPU.jpg",
+        "amount":1
     },
     {
         "_id":"4",
         "name":"Power Unit",
         "description":"a great power unit that supports 10W, can run a small fan",
         "date":"1000-23-23T18:25:43.511Z",
-        "imageUrl":"assets/powerunit.png"
+        "imageUrl":"assets/powerunit.png",
+        "amount":1
     }
 
 ]
@@ -141,28 +138,32 @@ router.get('/special',(req,res)=>{
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
         "date":"2020-01-23T20:44:36.511Z",
-        "imageUrl":"assets/monitor.jpg"
+        "imageUrl":"assets/monitor.jpg",
+        "amount":1
     },
     {
         "_id":"2",
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
         "date":"1900-05-23T14:26:43.511Z",
-        "imageUrl":"./assets/i3.jpeg"
+        "imageUrl":"./assets/i3.jpeg",
+        "amount":1
     },
     {
         "_id":"3",
         "name":"GPU",
         "description":"RTX 3080 : Show the best graphic you can only imagin in 2040",
         "date":"2040-04-30T12:15:33.511Z",
-        "imageUrl":"assets/GPU.jpg"
+        "imageUrl":"assets/GPU.jpg",
+        "amount":1
     },
     {
         "_id":"4",
         "name":"Power Unit",
         "description":"a great power unit that supports 10W, can run a small fan",
         "date":"1000-23-23T18:25:43.511Z",
-        "imageUrl":"assets/powerunit.png"
+        "imageUrl":"assets/powerunit.png",
+        "amount":1
     }
 
 ]
@@ -174,7 +175,8 @@ router.get('/iteminfo_1',(req,res)=>{
         "name":"Monitor",
         "description":"A normal functioning ABC brand monitor",
         "date":"2020-01-23T20:44:36.511Z",
-        "imageUrl":"assets/monitor.jpg"
+        "imageUrl":"assets/monitor.jpg",
+        "amount":1
     }]
 res.json(itemInfo_1)})
 
@@ -185,7 +187,8 @@ router.get('/iteminfo_2',(req,res)=>{
         "name":"CPU",
         "description":"i3-1000U: A CPU that never exists",
         "date":"1900-05-23T14:26:43.511Z",
-        "imageUrl":"./assets/i3.jpeg"
+        "imageUrl":"./assets/i3.jpeg",
+        "amount":1
     }]
 res.json(itemInfo_2)})
 
@@ -197,6 +200,7 @@ router.get('/storePage',(req,res)=>{
             "description":"i3-1000U: A CPU that never exists",
             "date":"1900-05-23T14:26:43.511Z",
             "imageUrl":"./assets/i3.jpeg",
+            "amount":1,
             "price":"2.2"
         },{
             "_id":"2",
@@ -204,6 +208,7 @@ router.get('/storePage',(req,res)=>{
             "description":"i3-1000U: A CPU that never exists",
             "date":"1900-05-23T14:26:43.511Z",
             "imageUrl":"./assets/i3.jpeg",
+            "amount":1,
             "price":"2.4"
         }]
     res.json(storePage)})
@@ -216,14 +221,16 @@ router.get('/storePage',(req,res)=>{
                 "description":"i3-1000U: A CPU that never exists",
                 "date":"1900-05-23T14:26:43.511Z",
                 "imageUrl":"./assets/i3.jpeg",
-                "price":"2.2"
+                "price":"2.2",
+                "amount":1
             },{
                 "_id":"2",
                 "name":"CPU",
                 "description":"i3-1000U: A CPU that never exists",
                 "date":"1900-05-23T14:26:43.511Z",
                 "imageUrl":"./assets/i3.jpeg",
-                "price":"2.2"
+                "price":"2.2",
+                "amount":1
             }]
         res.json(storeItemDetail)})
 module.exports = router
