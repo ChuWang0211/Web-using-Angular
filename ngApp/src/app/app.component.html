@@ -1,7 +1,7 @@
 <!-- below <nav is a nevagation bar, bg-dark means dark theme -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- below a brand text which says" CW's Museum-->
-<a class="navbar-brand" href="#">CW's Museum</a>
+<a class="navbar-brand" href="#">{{"home.title" | translate}}</a>
 <!-- below a button for responsiveness-->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -12,26 +12,35 @@
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <!-- routerLink determines what nevagation it goes to, routerLinkActive actives the action-->
-      <a class="nav-link" routerLink="/events" routerLinkActive="active">General Stuff</a>  <!-- Events is one of the word shows on the bar which link the General Stuff page-->
+      <a class="nav-link text-white" routerLink="/events" routerLinkActive="active">{{'home.general'| translate}}</a>  <!-- Events is one of the word shows on the bar which link the General Stuff page-->
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/special" routerLinkActive="active">Special Trash</a>
+      <a class="nav-link" routerLink="/special" routerLinkActive="active">{{'home.special'| translate}}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/storePage" routerLinkActive="active">Store</a>
+      <a class="nav-link" routerLink="/storePage" routerLinkActive="active">{{'home.store'| translate}}</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
-    </li>
+
   </ul>
   <ul class="navbar-nav">
-      <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->
-      <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a><!-- -->
-      <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a> <!-- show a Logout button if user logged in is true -->
+      <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">{{'home.login'| translate}}</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->
+      <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">{{'home.register'| translate}}</a><!-- -->
+      <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">{{'home.logout'| translate}}</a> <!-- show a Logout button if user logged in is true -->
+      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/cart" routerLinkActive="active">Cart</a>
+
     </ul>
+
 </div>
 </nav>
 <!-- router-outlet is going to render(show) the component in the container class -->
 <div class="container">
   <router-outlet></router-outlet>            
 </div>
+<label for="">
+  Translate
+  <select #langselect (change) = "translate.use(langselect.value)">
+    <option *ngFor = "let lang of translate.getLangs()" [value]="Lang">
+
+    </option>
+  </select>
+</label>

@@ -20,7 +20,9 @@ import { StorePageComponent } from './store-page/store-page.component';
 import { StoreItemDetailComponent } from './store-item-detail/store-item-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-database.component'
-
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,13 @@ import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-d
     BrowserModule,
     FormsModule,// once import on the above, you also need to add it here
     HttpClientModule,// once import on the above, you also need to add it here
-    AppRoutingModule
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),AppRoutingModule
   ],
   providers: [AuthService,EventService, AuthGuard,ItemInfoService,
     {provide: HTTP_INTERCEPTORS,// provider array can also be an object
@@ -52,5 +60,7 @@ import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-d
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 //ng g s auth, g for generate, s for service, auth is the name, but you can name is anything

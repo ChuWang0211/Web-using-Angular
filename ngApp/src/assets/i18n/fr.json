@@ -1,0 +1,13 @@
+{ 
+    "home": {
+        "title": "CW's Museum FRE",
+        "general": "General Stuff",
+        "special": "Special Trash",
+        "store" : "Store",
+        "cart":"Cart",
+        "login":"Login",
+        "register":"Register",
+        "logout":"Logout",
+        "select":"Select Language"
+    }
+}
