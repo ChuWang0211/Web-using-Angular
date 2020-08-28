@@ -12,7 +12,7 @@
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <!-- routerLink determines what nevagation it goes to, routerLinkActive actives the action-->
-      <a class="nav-link text-white" routerLink="/events" routerLinkActive="active">{{'home.general'| translate}}</a>  <!-- Events is one of the word shows on the bar which link the General Stuff page-->
+      <a class="nav-link" routerLink="/events" routerLinkActive="active">{{'home.general'| translate}}</a>  <!-- Events is one of the word shows on the bar which link the General Stuff page-->
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/special" routerLinkActive="active">{{'home.special'| translate}}</a>
@@ -22,25 +22,41 @@
     </li>
 
   </ul>
-  <ul class="navbar-nav">
+  <ul class="navbar-nav ">
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">{{'home.login'| translate}}</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">{{'home.register'| translate}}</a><!-- -->
       <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">{{'home.logout'| translate}}</a> <!-- show a Logout button if user logged in is true -->
-      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/cart" routerLinkActive="active">Cart</a>
-
-    </ul>
-
+      <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/cart" routerLinkActive="active">{{'home.cart'| translate}}</a>
+  </ul>
+    <ul class="navbar-nav ">
+    <a class="nav-item dropdown nav-link"> 
+      <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-graduation-cap mr-1"></i>Language
+    </a>
+      <div class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" name = "Select Language">
+        <div  #langselect (change) = "translate.use(langselect.value)">
+          <option class="dropdown-item" href="#" *ngFor = "let lang of translate.getLangs()" (click)= changeLanguage(lang)>{{lang}}</option>
+        </div>
+      </div>
+    </a>
+  </ul>
 </div>
+
+<ul class="navbar-nav mx-auto">
+  <!-- Dropdown -->
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-graduation-cap mr-1"></i>Lange
+      </a>
+      <div class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" name = "Select Language" #langselect (change) = "translate.use(langselect.value)">
+          <a class="dropdown-item" href="#"><i class="fa fa-file-text mr-2" *ngFor = "let lang of translate.getLangs()" [value]="lang"></i></a>
+      </div>
+  </li>
+</ul>
+
+
 </nav>
 <!-- router-outlet is going to render(show) the component in the container class -->
 <div class="container">
   <router-outlet></router-outlet>            
 </div>
-<label for="">
-  Translate
-  <select #langselect (change) = "translate.use(langselect.value)">
-    <option *ngFor = "let lang of translate.getLangs()" [value]="Lang">
-
-    </option>
-  </select>
-</label>
