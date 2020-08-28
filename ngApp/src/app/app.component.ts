@@ -9,12 +9,11 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'ngApp';
-  language = ['en','fr']
   constructor(public _authService: AuthService,private _event: EventService, public translate: TranslateService){
-    translate.addLangs(['en','fr']);
-    translate.setDefaultLang('en');
+    translate.addLangs(['English','French','中文']);
+    translate.setDefaultLang('English');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang :'en');
+    translate.use(browserLang.match(/English|French|中文/) ? browserLang :'English');
     console.log(translate.getLangs)
 }
 

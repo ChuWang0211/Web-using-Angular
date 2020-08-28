@@ -23,6 +23,8 @@ import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-d
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import {HttpClient} from '@angular/common/http';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  }),AppRoutingModule
+  }),AppRoutingModule, BrowserAnimationsModule, MatSliderModule,
   ],
   providers: [AuthService,EventService, AuthGuard,ItemInfoService,
     {provide: HTTP_INTERCEPTORS,// provider array can also be an object

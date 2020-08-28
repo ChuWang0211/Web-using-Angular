@@ -1,0 +1,13 @@
+{ 
+    "home": {
+        "title": "博物馆",
+        "general": "一般的东西",
+        "special": "特殊的垃圾",
+        "store" : "商店",
+        "cart":"购物车",
+        "login":"登入",
+        "register":"注册",
+        "logout":"登出",
+        "select":"选择语言"
+    }
+}

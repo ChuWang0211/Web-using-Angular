@@ -31,7 +31,7 @@
     <ul class="navbar-nav ">
     <a class="nav-item dropdown nav-link"> 
       <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-graduation-cap mr-1"></i>Language
+        <i class="fa fa-graduation-cap mr-1"></i>{{'home.select'| translate}}
     </a>
       <div class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" name = "Select Language">
         <div  #langselect (change) = "translate.use(langselect.value)">
@@ -44,14 +44,6 @@
 
 <ul class="navbar-nav mx-auto">
   <!-- Dropdown -->
-  <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-graduation-cap mr-1"></i>Lange
-      </a>
-      <div class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" name = "Select Language" #langselect (change) = "translate.use(langselect.value)">
-          <a class="dropdown-item" href="#"><i class="fa fa-file-text mr-2" *ngFor = "let lang of translate.getLangs()" [value]="lang"></i></a>
-      </div>
-  </li>
 </ul>
 
 
@@ -60,3 +52,4 @@
 <div class="container">
   <router-outlet></router-outlet>            
 </div>
+<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
