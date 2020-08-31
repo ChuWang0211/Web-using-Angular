@@ -25,6 +25,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { NgPaymentCardModule } from 'ng-payment-card';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { VerificationPageComponent } from './verification-page/verification-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { MatSliderModule } from '@angular/material/slider';
     StorePageComponent,
     StoreItemDetailComponent,
     CartComponent,
-    AddCartToDatabaseComponent
+    AddCartToDatabaseComponent,
+    PaymentPageComponent,
+    VerificationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,7 @@ import { MatSliderModule } from '@angular/material/slider';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  }),AppRoutingModule, BrowserAnimationsModule, MatSliderModule,
+  }),AppRoutingModule, BrowserAnimationsModule, MatSliderModule,NgPaymentCardModule
   ],
   providers: [AuthService,EventService, AuthGuard,ItemInfoService,
     {provide: HTTP_INTERCEPTORS,// provider array can also be an object

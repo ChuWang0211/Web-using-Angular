@@ -12,7 +12,8 @@ export class StoreItemDetailComponent implements OnInit {
   storeItemDetail = []
   itemDetail=[]
   obj = {}
-  token_with_iteminfo={token: '', iteminfo: ''}
+  token_with_iteminfo={token:''}
+  // token_with_iteminfo={token: '', iteminfo: ''}
   constructor(private _eventServive:EventService,private _auth: AuthService, private _router:Router) {
   }
 ngOnInit() {
@@ -41,8 +42,9 @@ putItemInCart(itemId){
 
   console.log(itemId)
   // console.log(this.itemDetail[0])
- this.token_with_iteminfo.iteminfo=this.itemDetail[0]
+//  this.token_with_iteminfo.iteminfo=this.itemDetail[0]
  this.token_with_iteminfo.token = localStorage.getItem("token")
+  console.log(this.token_with_iteminfo.token)
   this._auth.putItemIntoCart(this.token_with_iteminfo)
    .subscribe( // uses observiable //when using ths obserable, we either get a response or error
       res => {

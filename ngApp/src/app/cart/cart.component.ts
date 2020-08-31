@@ -13,11 +13,11 @@ export class CartComponent implements OnInit {
   constructor(private _eventServive:EventService, private _auth: AuthService, private _router: Router,private http:HttpClient) { }
   itemId = ""
   items=[]
+  tokeninfo={token:''}
   // obj = {}
-  token_with_iteminfo={token: ''}
   ngOnInit(): void {
-    this.token_with_iteminfo.token = localStorage.getItem("token")
-    this._auth.putItemIntoCart(this.token_with_iteminfo)
+    this.tokeninfo.token = localStorage.getItem("token")
+    this._auth.putItemIntoCart( this.tokeninfo)
       .subscribe( // uses observiable //when using ths obserable, we either get a response or error
          res => {
            console.log(res)

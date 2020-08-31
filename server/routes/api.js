@@ -4,6 +4,8 @@ const User = require('../models/user')// ".." means one folder up
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const user = require('../models/user')
+var crypto = require('crypto');
+var nodemailer = require('nodemailer');
 //link to my database in MongoDB with username and password
 const connectionString = "mongodb+srv://AngularUser1:AngularUser1@angularsdatabase-kdtrl.azure.mongodb.net/AngularsDatabase?retryWrites=true&w=majority" //6
 mongoose.connect(connectionString, { useNewUrlParser:true,useUnifiedTopology: true },err =>{//connect and action if error occur
@@ -15,7 +17,6 @@ token_email = ""
 router.get('/',(req, res) => {
     res.send('From API route')
 })
-
 // a register api
 router.post('/register', (req,res) => { // a post request to the endpoint register and get the access and response
     let userData = req.body // extract the user information from the request body
@@ -24,39 +25,63 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
         if(error){ // if error, the log to the console
             console.log(error)
         }else {
-            let userName = {subject: registeredUser.email}
             let payload = {subject: registeredUser._id} // use user id which as part of the token
             let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
             // let token_ts = registeredUser._id
             // let token_email = {"token":token, "email":userData.email}
             // let token_email = token.toString()+":"+userData.email.toString();
-            let token_email = {token,userName};
-            res.status(200).send({token_email})} // if success, send the detial for the registered user
-    }) // 
+            res.status(200).send({token})
+
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'wangchu0211',
+                    pass: 'DanDan0211'
+                    }
+                });
+                console.log('cw email')
+          var mailOptions = {
+            from: 'wangchu0211@gmail.com',
+            to: user.email,
+            subject: 'Account Verification Token',
+            text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token + '.\n'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+        }
+            
+})
 })
 
+
+
 router.post('/cart', (req,res) => { // a post request to the endpoint register and get the access and response
-    let itemData = req.body // extract the user information from the request body
-    let token = itemData.token
-    var obj = JSON.parse(token);
-    User.findOne({email: obj.userName},(error,userCart) =>{ // find the user who has the extractly same email ID as the request email ID, 
+    var token = req.body // extract the user information from the request body
+    var decoded = jwt.verify(req.body.token, 'secretKey');
+    console.log(decoded)
+    console.log(decoded.subject)
+    User.findOne({_id: decoded.subject}, (error, userCart) =>{ // find the user who has the extractly same email ID as the request email ID, 
         //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
         if(error){ // if there is an error, console.log(error)
             console.log(error)
         } else{
             // var a =  obj.userName
-            if(userCart.email!== obj.userName){
+            console.log(userCart._id)
+            if(userCart._id!= decoded.subject){
                 res.status(402).send('user does not register')
             }else{ 
-                res.status(200).send(userCart) //send token back, can use subscribe }
-               
-        }
-    }
-})
-})
+                console.log(userCart)
+                res.status(200).send(userCart) //send token back, can use subscribe }  
+        }}})})
 
 router.post('/addCartToDatabase',  function(req,res,next){ // a post request to the endpoint register and get the access and response
-    let newData = req.body
+    // let newData = req.body
     User.findById(req.body._id, function(err, author) {
         if (err) throw err;
         author.cart = req.body.cart;
@@ -84,16 +109,24 @@ router.post('/login',(req,res)=>{//make a link to the localhost
                 if(user.password !== userData.password){
                     res.status(401).send('Invalid password')
                 } else{
-                    let userName = userData.email
                     let payload = {subject: user._id} // use user id which as part of the token
                     let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
-                    res.status(200).send({token,userName})} // if success, send the detial for the registered user
+                    let verification = user.verified
+                    res.status(200).send({token, verification})} // if success, send the detial for the registered user
                    
             }
         }
     })
 })
 
+
+router.get('/VerificationPage', (req,res)=>{ // a post request to the endpoint register and get the access and response
+    let verificationMessage = [{
+        "message1":"An verification has sent to your email, please verify",
+        "message2":"Thank you so much!"
+    }]
+    res.json(verificationMessage)}
+    )
 router.get('/events',(req,res)=>{
     let events = [{
         "_id":"1",

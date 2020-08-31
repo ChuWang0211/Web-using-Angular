@@ -9,6 +9,7 @@ export class EventService {
   private __special_eventUrl= "http://localhost:3000/api/special"
   private _storePageUrl = "http://localhost:3000/api/storePage"
   private _storeItemDetail = "http://localhost:3000/api/storeItemDetail"
+  private _VerificationPage = "http://localhost:3000/api/VerificationPage"
 
   constructor(private http:HttpClient,private _router: Router) { }
 
@@ -24,6 +25,9 @@ export class EventService {
   }
   getStoreItemDetail(){
     return this.http.get<any>(this._storeItemDetail)
+  }
+  getVerificationPage(){
+    return this.http.get<any>(this._VerificationPage)
   }
 }
 

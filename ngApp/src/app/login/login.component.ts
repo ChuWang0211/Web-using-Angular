@@ -21,12 +21,17 @@ export class LoginComponent implements OnInit {
         // var spliting = JSON.stringify(res).toString().split(":");
         // let token = spliting[1]
         // let email = spliting[2]
-        localStorage.setItem('token', JSON.stringify(res)) // store the token in the localStorage
+        if(res.verification=='no'){
+          this._router.navigate(['/VerificationPage'])
+          console.log(res)
+        }else{
+          var token = res.token
+        localStorage.setItem('token', token) // store the token in the localStorage
         // localStorage.setItem('userName', email)
         // localStorage.setItem('userName', res)
         this._router.navigate(['/special'])// use the router to navigate if login success
       
-      },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
+      }},// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
     )
     }

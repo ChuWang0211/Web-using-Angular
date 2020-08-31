@@ -39,17 +39,16 @@ export class AuthService { // this is a AuthService class
   getItemId(){
   return localStorage.getItem('idItemDetail')
   }
-  putItemIntoCart(itemInfo){
-    console.log(itemInfo)
-    return this.http.post<any>(this._addItemToCart,itemInfo)
+  putItemIntoCart(token){
+    return this.http.post<any>(this._addItemToCart,token)
   }
   addToDatavase(userObject){
-    console.log(userObject)
     return this.http.post<any>(this._addCartToDatabase,userObject)
   }
 
   getCart(token){
     return  this.http.post<any>(this._addItemToCart,token)
   }
+
 }
   
