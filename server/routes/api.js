@@ -31,6 +31,7 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
             // let token_email = {"token":token, "email":userData.email}
             // let token_email = token.toString()+":"+userData.email.toString();
             res.status(200).send({token})
+            url="http://localhost:3000/confirmation/${emailToken}";
 
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -44,7 +45,9 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
             from: 'wangchu0211@gmail.com',
             to: user.email,
             subject: 'Account Verification Token',
-            text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token + '.\n'
+            text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + "localhost:4200" + '\/confirmation' +"?_id="+ token,
+
+            // html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
           };
           
           transporter.sendMail(mailOptions, function(error, info){
@@ -58,8 +61,6 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
             
 })
 })
-
-
 
 router.post('/cart', (req,res) => { // a post request to the endpoint register and get the access and response
     var token = req.body // extract the user information from the request body
@@ -119,6 +120,31 @@ router.post('/login',(req,res)=>{//make a link to the localhost
     })
 })
 
+router.post('/confirmation',(req,res)=>{
+    // var token = req.body;
+    // console.log(token)
+    var decoded = jwt.verify(req.body.token, 'secretKey');
+    console.log(decoded)
+    User.findOne({_id: decoded.subject}, (error, userCart) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{
+            // var a =  obj.userName
+            console.log(userCart._id)
+            if(userCart._id!= decoded.subject){
+                res.status(402).send('user did not register')
+            }else{ 
+                userCart.verified = "yes";
+                userCart.save(function(err) {
+                    if (err) throw err;
+                     
+                    console.log('updated successfully');
+                res.status(200).send(userCart) //send token back, can use subscribe }  
+        });
+    }}})
+    
+})
 
 router.get('/VerificationPage', (req,res)=>{ // a post request to the endpoint register and get the access and response
     let verificationMessage = [{

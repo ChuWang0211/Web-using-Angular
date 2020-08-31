@@ -28,6 +28,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgPaymentCardModule } from 'ng-payment-card';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { VerificationPageComponent } from './verification-page/verification-page.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { VerificationPageComponent } from './verification-page/verification-page
     CartComponent,
     AddCartToDatabaseComponent,
     PaymentPageComponent,
-    VerificationPageComponent
+    VerificationPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,

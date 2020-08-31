@@ -15,6 +15,7 @@ import { from } from 'rxjs';
 import { CartComponent } from './cart/cart.component';
 import { AddCartToDatabaseComponent } from './add-cart-to-database/add-cart-to-database.component';
 import { VerificationPageComponent } from './verification-page/verification-page.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
@@ -61,6 +62,10 @@ component: LoginComponent
 {
   path:'VerificationPage',
   component:VerificationPageComponent
+},
+{
+  path:'confirmation',
+  component:ConfirmationPageComponent
 }
 ];
 
