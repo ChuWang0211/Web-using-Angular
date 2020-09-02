@@ -1,15 +1,42 @@
-<div class="row mt-5"><!-- have a row div class with margin top 5 -->
-    <div class="col-md-12 mb-2" *ngFor="let event of items"><!-- by default, boostrap have 12 colomn graps, col-md-4 means 4 colomn graps per event layout. in this case, 4/12=3 means 3 events per row -->
-        <!-- ngFor means a for loop that will make a event array. "let event of events" means for each event in the events array -->
-        <div class="card text-left" ><!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
-            <div class="card-body"><!--  in this card, we have a title and a text(you can add more if you want to)-->
-                <h5 class="card-title">{{event.name}}</h5><!-- title  is the name of the event -->
-                <img src="{{event.imageUrl}}" width="200" height="200" class="img-thumbnail" (click) ="toItemInfo(event._id)">
-                <p class ="card-text">{{event.description}}</p><!-- the text is the description of the event -->
-                <a class="btn btn-dark text-white btn-center"  >Amount  {{event.amount}}</a><!-- a button says buy tickets -->
-                <!--<input id="btntest" class="btn btn-dark" type="button" value="Check" onclick="window.location.href = 'http://www.google.com'" /> -->
+<html>
+    <head>
+        <title>The Generics | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="cart.component.css">
+    </head>
+    <body>
+        <section class="container content-section">
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
             </div>
-            <div class="card-footer text-muted"> {{event.date | date:'shortDate'}} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
-        </div>
-    </div>
-</div> 
+            <div class="cart-items">
+            </div>
+        </section>
+
+        <section class="container content-section" *ngFor="let event of items">
+            <h2 class="section-header"></h2>
+            <div class="shop-items" >
+
+                    <div style='display:table' >
+                        <div style='display:table-cell'>{{event.name}}</div>
+                        <img style='display:table-cell;'src="{{event.imageUrl}}" width="150px" height="150px" class="img-thumbnail" (click) ="toItemInfo(event._id)">
+                        <div style='display:table-cell'>{{event.price}}</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="removeOne(event)"><path d="M0 0h24v24H0z" fill="none" /><path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                        <a class = "card-text" style='display:table-cell'>{{event.amount}}</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="addOne(event)"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>  
+                    </div>
+
+            </div>
+        </section>
+        <section class="container content-section">
+            <div class="cart-total" >
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">$0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+        </section>
+    </body>
+</html>

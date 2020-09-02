@@ -57,13 +57,11 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
               console.log('Email sent: ' + info.response);
             }
           });
-        }
-            
-})
+        }})
 })
 
 router.post('/cart', (req,res) => { // a post request to the endpoint register and get the access and response
-    var token = req.body // extract the user information from the request body
+ // extract the user information from the request body
     var decoded = jwt.verify(req.body.token, 'secretKey');
     console.log(decoded)
     console.log(decoded.subject)
@@ -83,15 +81,17 @@ router.post('/cart', (req,res) => { // a post request to the endpoint register a
 
 router.post('/addCartToDatabase',  function(req,res,next){ // a post request to the endpoint register and get the access and response
     // let newData = req.body
+    console.log(req.body)
     User.findById(req.body._id, function(err, author) {
         if (err) throw err;
         author.cart = req.body.cart;
         author.email = req.body.email;
         author.history = req.body.history;
         author.password = req.body.password;
+        author.cart.amount = req.body.cart.amount;
+        console.log(req.body.cart.amount)
         author.save(function(err) {
             if (err) throw err;
-             
             console.log('updated successfully');
         });
     });

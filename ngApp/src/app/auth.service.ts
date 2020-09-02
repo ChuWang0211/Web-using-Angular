@@ -17,7 +17,7 @@ export class AuthService { // this is a AuthService class
   private _addItemToCart= "http://localhost:3000/api/cart"
   private _addCartToDatabase= "http://localhost:3000/api/addCartToDatabase"
   private _verifyUser= "http://localhost:3000/api/confirmation"
-  private
+
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
     return this.http.post<any>(this._registerUrl,user)// in the function, we make a post request and returned the observerable. the first argument is the url, and the second argument is the user object/json 
@@ -44,6 +44,7 @@ export class AuthService { // this is a AuthService class
     return this.http.post<any>(this._addItemToCart,token)
   }
   addToDatavase(userObject){
+    console.log(userObject)
     return this.http.post<any>(this._addCartToDatabase,userObject)
   }
 
