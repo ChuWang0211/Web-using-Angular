@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="login.component.css">
 <div class="row pt-5"><!-- start with this, "row" is a format, pt-5 means give a padding on the top about 5 pixel or something-->
     <div class="col-md-6 mx-auto"><!-- inside the class "col-md-6 " makes 6 colomns, "mx-auto" makes the text horizontal-->
         <div class="card rounded-0"><!-- the 6 colomns are inside this card rounded-0 which is a layout form used in boostrap-->
@@ -15,6 +16,7 @@
                         <input [(ngModel)]="loginUserData.password" name="password" type="password" class= "form-control rounded-0" required>
                     </div>
                     <button (click)= "loginUser()" type = "button" class="btn btn-success floar-right">Login</button><!-- button is also in the form but it is not form group, it is single button that takes the colo . (click)="registerUser()" means when the user click on the register botton, it calls registerUser function-->
+                    <button (click)="forgetPassword()" class="password btn btn-transparent floar-right"  type = "button" style="float: right;" >link text</button>
                 </form>
             </div>
         </div> 

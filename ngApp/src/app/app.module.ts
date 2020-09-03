@@ -29,6 +29,8 @@ import { NgPaymentCardModule } from 'ng-payment-card';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { VerificationPageComponent } from './verification-page/verification-page.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     AddCartToDatabaseComponent,
     PaymentPageComponent,
     VerificationPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    ChangePasswordComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
