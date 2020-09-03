@@ -17,6 +17,7 @@ export class AuthService { // this is a AuthService class
   private _addItemToCart= "http://localhost:3000/api/cart"
   private _addCartToDatabase= "http://localhost:3000/api/addCartToDatabase"
   private _verifyUser= "http://localhost:3000/api/confirmation"
+  private _forgetPassword = "http://localhost:3000/api/forgetPassword"
   private _changePassword = "http://localhost:3000/api/changePassword"
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
@@ -55,27 +56,10 @@ export class AuthService { // this is a AuthService class
   }
   checkIfEmailExist(email) {
     console.log(email)
-    return this.http.post<any>(this._changePassword, email)
-      //.subscribe( // uses observiable //when using ths obserable, we either get a response or error
-      //  res => {
-      //    console.log(res)
-      //    // var spliting = JSON.stringify(res).toString().split(":");
-      //    // let token = spliting[1]
-      //    // let email = spliting[2]
-      //    //if (res.verification == 'no') {
-      //    //  this._router.navigate(['/VerificationPage'])
-      //    //  console.log(res)
-      //    //} else {
-      //    //  var token = res.token
-      //    //  localStorage.setItem('token', token) // store the token in the localStorage
-      //    //  // localStorage.setItem('userName', email)
-      //    //  // localStorage.setItem('userName', res)
-      //    //  this._router.navigate(['/special'])// use the router to navigate if login success
-
-      //    //}
-      //  },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
-      //  err => console.log(err)// if get error, when show something to indicate the error
-      //)
+    return this.http.post<any>(this._forgetPassword, email)
+  }
+  updatePassword(token_password) {
+    return this.http.post<any>(this._changePassword, token_password)
   }
 
 }
