@@ -60,10 +60,34 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
         }})
 })
 router.post('/changePassword', (req, res) => {
+    console.log(req.body.login)
+    if (req.body.login == true){
+        var decoded = jwt.verify(req.body.token, 'secretKey');
+        console.log(decoded)
+        User.findOne({_id: decoded.subject}, (error, user) => {
+            if (!user) {
+                console.log('error', 'User is not found');
+            } else {
+                if(user.password!=req.body.oldPassword){
+                    res.send({ res: 'Your old password is not correct.' })
+                }
+                else{
+                console.log(user)
+                user.password = req.body.password;
+                user.resetPasswordToken = "";
+                user.save();
+                res.send({ res: 'success! You have changed your password.' })}
+            }
+
+
+        })
+
+
+    } else {
     if (Object.keys(req.body).length == 1) {
         User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
             if (!user) {
-                console.log('error', 'Password reset token is invalid or has expired.');
+                // console.log('error', 'Password reset token is invalid or has expired.');
                 res.send({ res: "cw" });
             }
         })
@@ -82,6 +106,7 @@ router.post('/changePassword', (req, res) => {
 
         })
     }
+}
 })
 
 router.post('/forgetPassword', (req, res) => {

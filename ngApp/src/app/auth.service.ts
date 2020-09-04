@@ -33,6 +33,7 @@ export class AuthService { // this is a AuthService class
   logoutUser(){ 
     localStorage.removeItem('token')// if log out, token is removed
     localStorage.removeItem('admin')
+    localStorage.removeItem('changePassword')
     this._router.navigate(['/events'])// then it is navigate to events page
   }
   loggedIn(){

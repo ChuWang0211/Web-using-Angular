@@ -31,6 +31,8 @@ directToPage(item){
     this._router.navigate(['/orderHistory']) 
 
   }else if(item=="Change Password"){
+    localStorage.setItem('changePassword',"true")
+    this._router.navigate(['/changePassword'])
     
   }
 }

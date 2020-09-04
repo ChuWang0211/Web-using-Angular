@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 export class ChangePasswordComponent implements OnInit {
   public urlParams = "";
   param = { token: '' }
-  allParams = { token: '', password: ''}
+  allParams = { token: '', password: '', login:false, oldPassword: ''}
   userPassword1 = { password: '' };
   userPassword2 = { password: '' };
+  theOldPassword = {password:''}
   a=[]
   constructor(private _auth: AuthService, private _router: Router) { }
 
@@ -20,6 +21,8 @@ export class ChangePasswordComponent implements OnInit {
 
     console.log(this.userPassword1)
     console.log(this.userPassword2)
+
+    
     if (this.userPassword1.password != this.userPassword2.password) {
       this.a = []
       this.a.push("The Password does not match!")
@@ -29,6 +32,23 @@ export class ChangePasswordComponent implements OnInit {
         this.a = []
         this.a.push("The Password must be at least 6 chacter l")
       } else {
+        if (this._auth.loggedIn()){
+          this.allParams.login = true;
+          this.allParams.oldPassword = this.theOldPassword.password
+          this.allParams.token = localStorage.getItem('token')
+          this.a = []
+          this.a.push("")
+          this.allParams.password = this.userPassword1.password;
+          this._auth.updatePassword(this.allParams)
+              .subscribe( // uses observiable //when using ths obserable, we either get a response or error
+                res => {
+                  this.a.push(res.res)
+                  console.log(res)
+                })
+          console.log(this.allParams.token)
+        } else{
+          this.allParams.login = false;
+        
         this.a = []
         this.a.push("")
         this.allParams.token = this.param.token;
@@ -38,7 +58,7 @@ export class ChangePasswordComponent implements OnInit {
               res => {
                 this.a.push(res.res)
                 console.log(res)
-              })
+              })}
         }
       }
       
@@ -52,11 +72,20 @@ export class ChangePasswordComponent implements OnInit {
       .subscribe( // uses observiable //when using ths obserable, we either get a response or error
         res => {
           if (res.res == "cw") {
-            this._router.navigate(['/login'])
+            if(this._auth.loggedIn()){
+              this._router.navigate(['/changePassword'])
+            }else{this._router.navigate(['/login'])}
+            
           }
           console.log(res)
         })
 
   }
+isChangePassword(){
+  if(localStorage.getItem('changePassword')!=null){
+    return true
+  }
+  return false
+}
 
 }
