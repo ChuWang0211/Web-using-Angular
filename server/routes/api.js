@@ -304,6 +304,26 @@ router.post("/adminViewUserOrderHistory",(req,res)=>{
 )});
 
 
+router.post('/payment'),(req,res)=>{
+
+}
+router.post('/admin'),(req,res)=>{
+
+}
+router.post('/userHistoryOrders',(req,res)=>{
+    User.findOne({email: req.body.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{// if there is no error, then check if the email and password match. Status is just to report the status as a number 
+            if(!user){
+                res.status(402).send('Invalid email')
+            }else{
+                    res.send(user.history)} // if success, send the detial for the registered user
+                   
+            }
+        }
+    )})
 
 
 

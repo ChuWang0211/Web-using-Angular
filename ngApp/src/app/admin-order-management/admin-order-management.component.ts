@@ -13,6 +13,8 @@ export class AdminOrderManagementComponent implements OnInit {
   allUserList = []
   param = {token:''}
   obj = {}
+  costumer_email = {}
+  selectedUser={email:''}
   constructor(private _authService: AuthService, private _router:Router) { }
 
   ngOnInit(): void {
@@ -21,20 +23,34 @@ export class AdminOrderManagementComponent implements OnInit {
     this._authService.getallUsers(this.param)
     .subscribe( // uses observiable //when using ths obserable, we either get a response or error
       res => {
-        console.log(res)
-        
-        // this.obj={}
-        // this.obj=Object.assign({},res)
-        // var i;
-        // for (i = 0; i < res.length; i++) {
-        //  this.allUserList.push(res.history[i]);
-         
-        // } 
-        // console.log(this.allUserList)
+
+        this.obj={}
+        this.obj=Object.assign({},res)
+        var i;
+        console.log(Object.keys(res).length)
+        for (var x in res) {
+          this.allUserList.push(res[x.toString()]);
+          this.costumer_email[res[x.toString()].email]= []
+       }
+        console.log(this.costumer_email)
       },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
       )
 
+  }
+  userOrders(email){
+    this.selectedUser.email=email
+    console.log(this.selectedUser)
+    this._authService.selectedUserOrderHistory(this.selectedUser)
+    .subscribe( // uses observiable //when using ths obserable, we either get a response or error
+      res => {
+        console.log(res)
+        this.costumer_email[email]=[]
+        for(var i=0; i<res.length;i++){
+          this.costumer_email[email].push(res[i])
+        }
+       
+      })
   }
 
 }

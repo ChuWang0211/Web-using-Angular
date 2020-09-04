@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit {
     .subscribe( // uses observiable //when using ths obserable, we either get a response or error
       res => {
         console.log(res)
-        // var spliting = JSON.stringify(res).toString().split(":");
-        // let token = spliting[1]
-        // let email = spliting[2]
         if(res.verification=='no'){
           this._router.navigate(['/VerificationPage'])
           console.log(res)
@@ -31,8 +28,6 @@ export class LoginComponent implements OnInit {
         if(res.admin==true){
         localStorage.setItem('admin', admin)}
         else{}
-        // localStorage.setItem('userName', email)
-        // localStorage.setItem('userName', res)
         this._router.navigate(['/special'])// use the router to navigate if login success
       
       }},// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response

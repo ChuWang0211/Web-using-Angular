@@ -1,1 +1,13 @@
-<p>admin-order-management works!</p>
+<div class="row mt-5"><!-- have a row div class with margin top 5 -->
+    <div class="col-md-12 mb-6" *ngFor="let event of allUserList"><!-- by default, boostrap have 12 colomn graps, col-md-4 means 4 colomn graps per event layout. in this case, 4/12=3 means 3 events per row -->
+        <!-- ngFor means a for loop that will make a event array. "let event of events" means for each event in the events array -->
+        <div class="card card-body" (click) = userOrders(event.email) > {{event.email}}<!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
+            <div class="card-body" *ngFor = 'let order of costumer_email[event.email]'><!--  in this card, we have a title and a text(you can add more if you want to)-->
+                <h5 class="card-title text-left" >{{order.name}}</h5><!-- title  is the name of the event -->
+                <img src="{{order.imageUrl}}" width="200" height="200" class="img-thumbnail">
+                    <h5 class="card-title"></h5>
+                <!-- <img src="{{event.history[0].imageUrl}}" width="200" height="200" class="img-thumbnail">-->
+                <!--<input id="btntest" class="btn btn-dark" type="button" value="Check" onclick="window.location.href = 'http://www.google.com'" /> -->
+            </div>
+    </div>
+</div>  
