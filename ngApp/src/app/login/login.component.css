@@ -1,0 +1,30 @@
+a.password:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a.password:visited {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a.password:hover {
+  color: deepskyblue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.password:active {
+  color: deepskyblue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.password {
+  text-align: right;
+  margin: auto;
+  position: absolute;
+  right: 0;
+}

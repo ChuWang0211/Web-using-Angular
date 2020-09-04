@@ -18,6 +18,8 @@ import { VerificationPageComponent } from './verification-page/verification-page
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import{OrderHistoryComponent} from './order-history/order-history.component';
 import{AdminOrderManagementComponent} from './admin-order-management/admin-order-management.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
@@ -76,6 +78,15 @@ component: LoginComponent
   path:'adminViewUserOrderHistory',
   component:AdminOrderManagementComponent
 }
+  },
+{
+  path: 'changePassword',
+   component: ChangePasswordComponent
+  },
+  {
+   path: 'forgetPassword',
+   component:ForgetPasswordComponent
+  }
 ];
 
 @NgModule({

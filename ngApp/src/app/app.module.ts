@@ -32,6 +32,8 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminOrderManagementComponent } from './admin-order-management/admin-order-management.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AdminOrderManagementComponent } from './admin-order-management/admin-or
     ConfirmationPageComponent,
     OrderHistoryComponent,
     AdminComponent,
-    AdminOrderManagementComponent
+    AdminOrderManagementComponent,
+    ChangePasswordComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

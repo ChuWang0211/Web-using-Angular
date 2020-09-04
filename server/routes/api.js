@@ -59,6 +59,82 @@ router.post('/register', (req,res) => { // a post request to the endpoint regist
           });
         }})
 })
+router.post('/changePassword', (req, res) => {
+    if (Object.keys(req.body).length == 1) {
+        User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+            if (!user) {
+                console.log('error', 'Password reset token is invalid or has expired.');
+                res.send({ res: "cw" });
+            }
+        })
+    } else {
+        User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+            if (!user) {
+                console.log('error', 'Password reset token is invalid or has expired.');
+            } else {
+                console.log(user)
+                user.password = req.body.password;
+                user.resetPasswordToken = "";
+                user.save();
+                res.send({ res: 'success! Please head to the login page now.' })
+            }
+
+
+        })
+    }
+})
+
+router.post('/forgetPassword', (req, res) => {
+    let email = req.body;
+    console.log(email)
+    User.findOne({ email: req.body.email }, (error, user) => { // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if (error) { // if there is an error, console.log(error)
+            res.send({ res: "err1212or" });
+        } else {// if there is no error, then check if the email and password match. Status is just to report the status as a number 
+            if (!user) {
+                res.send({ res: "error" });
+            } else {
+                res.send({ res: "not error" });
+                token = crypto.randomBytes(32).toString('hex')
+                user.resetPasswordToken = token;
+                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.save();
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'wangchu0211',
+                        pass: 'DanDan0211'
+                    }
+                });
+                console.log('cw email')
+                console.log('http://' + 'localhost:4200' + '/changePassword/?_id=' + token)
+                var mailOptions = {
+                    from: 'wangchu0211@gmail.com',
+                    to: 'wangchu0211@gmail.com',
+                    subject: 'cw idiot',
+                    text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                        'http://' + 'localhost:4200' + '/changePassword/?_id=' + token + '\n\n' +
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                };
+
+                    // html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                    res.status(123).send({ res: 'cw is zhu' })
+                });
+            }
+        }
+    })
+})
+
+
 
 router.post('/cart', (req,res) => { // a post request to the endpoint register and get the access and response
  // extract the user information from the request body
@@ -77,7 +153,10 @@ router.post('/cart', (req,res) => { // a post request to the endpoint register a
             }else{ 
                 console.log(userCart)
                 res.status(200).send(userCart) //send token back, can use subscribe }  
-        }}})})
+            }
+        }
+    })
+})
 
 router.post('/addCartToDatabase',  function(req,res,next){ // a post request to the endpoint register and get the access and response
     // let newData = req.body

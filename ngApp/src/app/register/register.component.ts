@@ -8,7 +8,7 @@ import {AuthService} from '../auth.service'; // after create the auth service wh
 })
 export class RegisterComponent implements OnInit {
 
-registerUserData = {email: '', password: '', cart:[], history:[], verified:'no',admin:false};// set this empty variable and bind the input 
+  registerUserData = { email: '', password: '', cart: [], history: [], verified: 'no', resetPasswordToken: "", resetPasswordExpires: Date(),admin:false};// set this empty variable and bind the input 
   constructor(private _auth:AuthService,private _router: Router) {// inject the AuthService class which is used to connect the  front and form with the back end api
 // inject the router in order to use it for navigation
   }
