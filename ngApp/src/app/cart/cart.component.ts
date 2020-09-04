@@ -31,9 +31,7 @@ export class CartComponent implements OnInit {
            for (i = 0; i < res.cart.length; i++) {
             this.items.push(res.cart[i]);
            } 
-
            console.log(this.items)
-           
          },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
          err =>console.log(err)// if get error, when show something to indicate the error
          )
@@ -82,5 +80,8 @@ export class CartComponent implements OnInit {
     
       }else{console.log("can not find")}
      } 
+  }
+  purchase(items){
+
   }
 }

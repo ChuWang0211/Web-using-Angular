@@ -29,6 +29,9 @@ import { NgPaymentCardModule } from 'ng-payment-card';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { VerificationPageComponent } from './verification-page/verification-page.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminOrderManagementComponent } from './admin-order-management/admin-order-management.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     AddCartToDatabaseComponent,
     PaymentPageComponent,
     VerificationPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    OrderHistoryComponent,
+    AdminComponent,
+    AdminOrderManagementComponent
   ],
   imports: [
     BrowserModule,

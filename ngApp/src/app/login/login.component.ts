@@ -25,8 +25,12 @@ export class LoginComponent implements OnInit {
           this._router.navigate(['/VerificationPage'])
           console.log(res)
         }else{
+          var admin = res.admin
           var token = res.token
         localStorage.setItem('token', token) // store the token in the localStorage
+        if(res.admin==true){
+        localStorage.setItem('admin', admin)}
+        else{}
         // localStorage.setItem('userName', email)
         // localStorage.setItem('userName', res)
         this._router.navigate(['/special'])// use the router to navigate if login success

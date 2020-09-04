@@ -17,6 +17,9 @@ export class AuthService { // this is a AuthService class
   private _addItemToCart= "http://localhost:3000/api/cart"
   private _addCartToDatabase= "http://localhost:3000/api/addCartToDatabase"
   private _verifyUser= "http://localhost:3000/api/confirmation"
+  private _orderHistory= "http://localhost:3000/api/orderHistory"
+  private _adminViewUserOrderHistory= "http://localhost:3000/api/adminViewUserOrderHistory"
+
 
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
@@ -29,6 +32,7 @@ export class AuthService { // this is a AuthService class
 
   logoutUser(){ 
     localStorage.removeItem('token')// if log out, token is removed
+    localStorage.removeItem('admin')
     this._router.navigate(['/events'])// then it is navigate to events page
   }
   loggedIn(){
@@ -54,6 +58,23 @@ export class AuthService { // this is a AuthService class
   verifyUser(token){
     return  this.http.post<any>(this._verifyUser,token)
   }
+  getOrderHistory(token){
+    return  this.http.post<any>(this._orderHistory,token)
+  }
+  getallUsers(token){
+    return  this.http.post<any>(this._adminViewUserOrderHistory,token)
+  }
+  isAdmin(){
+    if(localStorage.getItem('admin')==null){
+      return false
+    }else{
+      
+      return true}
+  
+    }
+  
+  
+  
 
 }
   

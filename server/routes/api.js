@@ -97,6 +97,25 @@ router.post('/addCartToDatabase',  function(req,res,next){ // a post request to 
     });
 });
 
+router.post('/orderHistory', (req,res) => { // a post request to the endpoint register and get the access and response
+    // extract the user information from the request body
+       var decoded = jwt.verify(req.body.token, 'secretKey');
+       console.log(decoded)
+       console.log(decoded.subject)
+       User.findOne({_id: decoded.subject}, (error,userOrderHistory) =>{ // find the user who has the extractly same email ID as the request email ID, 
+           //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+           if(error){ // if there is an error, console.log(error)
+               console.log(error)
+           } else{
+               // var a =  obj.userName
+               console.log(userOrderHistory._id)
+               if(userOrderHistory._id!= decoded.subject){
+                   res.status(402).send('user does not register')
+               }else{ 
+                   console.log(userOrderHistory)
+                   res.status(200).send(userOrderHistory) //send token back, can use subscribe }  
+           }}})})
+
 router.post('/login',(req,res)=>{//make a link to the localhost
     let userData = req.body //extract the user information from the request body
     User.findOne({email: userData.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
@@ -110,10 +129,11 @@ router.post('/login',(req,res)=>{//make a link to the localhost
                 if(user.password !== userData.password){
                     res.status(401).send('Invalid password')
                 } else{
+                    let admin = user.admin
                     let payload = {subject: user._id} // use user id which as part of the token
                     let token = jwt.sign(payload, 'secretKey')//use jwt to generate a token
                     let verification = user.verified
-                    res.status(200).send({token, verification})} // if success, send the detial for the registered user
+                    res.status(200).send({token, verification,admin})} // if success, send the detial for the registered user
                    
             }
         }
@@ -145,6 +165,43 @@ router.post('/confirmation',(req,res)=>{
     }}})
     
 })
+
+router.post("/adminViewUserOrderHistory",(req,res)=>{
+    // var token = req.body;
+    // console.log(token)
+    var decoded = jwt.verify(req.body.token, 'secretKey');
+    console.log(decoded)
+    User.findOne({_id: decoded.subject}, (error, adminId) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log("this is an error")
+        } else{
+            // var a =  obj.userName
+            if(adminId._id!= decoded.subject){
+                res.send('this is not a valid user ID')
+            }else{ 
+                console.log(adminId.admin)
+                if (adminId.admin){
+                    User.find({}, function(err, users) {
+                        var userMap = {};
+                    
+                        users.forEach(function(user) {
+                          userMap[user._id] = user;
+                        });
+                    
+                        res.send(userMap);  
+                      });
+                }else{
+                    res.send('Not Admin')
+                }
+
+    }
+}}
+)});
+
+
+
+
 
 router.get('/VerificationPage', (req,res)=>{ // a post request to the endpoint register and get the access and response
     let verificationMessage = [{

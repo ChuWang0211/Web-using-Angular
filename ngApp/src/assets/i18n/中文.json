@@ -8,6 +8,7 @@
         "login":"登入",
         "register":"注册",
         "logout":"登出",
-        "select":"选择语言"
+        "select":"选择语言",
+        "user":"你好！"
     }
 }

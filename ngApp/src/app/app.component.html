@@ -20,13 +20,26 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/storePage" routerLinkActive="active">{{'home.store'| translate}}</a>
     </li>
-
+    <li class="nav-item">
+      <a class="nav-link" *ngIf="_authService.isAdmin()" routerLink="/admin" routerLinkActive="active">Admin</a>
+    </li>
   </ul>
   <ul class="navbar-nav ">
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">{{'home.login'| translate}}</a><!--  *ngIf = "!_authService.loggedIn()" means only show if user loggined is false  -->
       <a class="nav-link" *ngIf = "!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">{{'home.register'| translate}}</a><!-- -->
       <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">{{'home.logout'| translate}}</a> <!-- show a Logout button if user logged in is true -->
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/cart" routerLinkActive="active">{{'home.cart'| translate}}</a>
+
+  </ul>
+  <ul class="navbar-nav ">
+    <a class="nav-item dropdown nav-link"> 
+      <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-graduation-cap mr-1"></i>{{'home.user'| translate}}
+    </a>
+      <div class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" name = "Select Language">
+          <option class="dropdown-item" href="#" *ngFor = "let item of userProfileInfo" (click)= directToPage(item)>{{item}}</option>
+      </div>
+    </a>
   </ul>
     <ul class="navbar-nav ">
     <a class="nav-item dropdown nav-link"> 
@@ -40,6 +53,7 @@
       </div>
     </a>
   </ul>
+
 </div>
 
 <ul class="navbar-nav mx-auto">

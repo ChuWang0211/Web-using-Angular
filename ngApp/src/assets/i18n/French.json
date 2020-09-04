@@ -8,6 +8,7 @@
         "login":"Login",
         "register":"Register",
         "logout":"Logout",
-        "select":"Select Language"
+        "select":"Select Language",
+        "user":"Hi!"
     }
 }
