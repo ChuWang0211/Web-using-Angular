@@ -48,7 +48,7 @@ export class ChangePasswordComponent implements OnInit {
     var url = new URLSearchParams(location.search).toString();
     this.param.token = url.substring(4, url.length);
     console.log(this.param.token)
-    this._auth.checkIfTokenExist(this.param)
+    this._auth.updatePassword(this.param)
       .subscribe( // uses observiable //when using ths obserable, we either get a response or error
         res => {
           if (res.res == "cw") {
