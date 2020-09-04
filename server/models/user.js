@@ -7,7 +7,7 @@ const userSchema = new Schema({
     cart: Array,
     history: Array,
     verified: String,
-    admin:Boolean
+    admin:Boolean,
     resetPasswordToken: String,
     resetPasswordExpires: Date
 })

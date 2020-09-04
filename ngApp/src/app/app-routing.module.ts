@@ -77,8 +77,7 @@ component: LoginComponent
 {
   path:'adminViewUserOrderHistory',
   component:AdminOrderManagementComponent
-}
-  },
+},
 {
   path: 'changePassword',
    component: ChangePasswordComponent
