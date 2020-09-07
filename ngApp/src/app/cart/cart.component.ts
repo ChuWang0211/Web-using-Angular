@@ -1,14 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EventService } from '../event.service';
 import { AuthService } from '../auth.service';
 import{ Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+declare var paypal;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
+
 export class CartComponent implements OnInit {
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
+
+  product = {
+    price: 1.77,
+    description: 'used couch, decent condition',
+    //img: 'assets/couch.jpg'
+  };
+
+
+  paidFor = false;
 
   constructor(private _eventServive:EventService, private _auth: AuthService, private _router: Router,private http:HttpClient) { }
   itemId = ""
@@ -16,9 +30,34 @@ export class CartComponent implements OnInit {
   tokeninfo={token:''}
   costumer=[]
   obj = {}
-  total=0
-  ngOnInit(): void {
-
+  ngOnInit() {
+    paypal
+      .Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: this.product.description,
+                amount: {
+                  currency_code: 'USD',
+                  value: this.product.price
+                }
+              }
+            ]
+          });
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          this.paidFor = true;
+          console.log(order);
+        },
+        onError: err => {
+          console.log(err);
+        }
+      })
+      .render(this.paypalElement.nativeElement);
+    console.log('paid for' + this.paidFor)
+  
     this.tokeninfo.token = localStorage.getItem("token")
     this._auth.putItemIntoCart( this.tokeninfo)
       .subscribe( // uses observiable //when using ths obserable, we either get a response or error
