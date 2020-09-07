@@ -23,6 +23,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import{AdminItemManagmentPageComponent} from'./admin-item-managment-page/admin-item-managment-page.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminEditItemComponent } from './admin-edit-item/admin-edit-item.component';
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
@@ -98,7 +99,11 @@ component: LoginComponent
   },{
     path: 'adminItemManagePage',
     component:AdminItemManagmentPageComponent
-  }
+  },
+  { 
+    path: 'adminEditItem',
+    component:AdminEditItemComponent
+}
 ];
 
 @NgModule({

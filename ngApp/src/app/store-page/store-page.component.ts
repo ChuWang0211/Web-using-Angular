@@ -13,9 +13,11 @@ export class StorePageComponent implements OnInit {
   obj = {}
   id={token:''}
   allItemList=[]
+
   constructor(private _eventServive:EventService,private _authService: AuthService, private _router:Router) { }
 
   ngOnInit(){
+
     if(this.id.token==null){
       console.log("please login")
       this._router.navigate(['/login'])
@@ -30,6 +32,7 @@ export class StorePageComponent implements OnInit {
         for (var x in res) {
           console.log(res[x.toString()])
           this.allItemList.push(res[x.toString()]);
+
           console.log( this.allItemList)  
       
       }}),// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response

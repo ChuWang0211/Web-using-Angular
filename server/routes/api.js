@@ -304,6 +304,21 @@ router.post("/adminViewUserOrderHistory",(req,res)=>{
 }}
 )});
 
+router.post('/adminEditItem',(req,res)=>{
+
+    StoreItem.findById(req.body._id, function(err, item) {
+        if (err) throw err;
+        item.name = req.body.name;
+        item.description = req.body.description;
+        item.amount = req.body.amount;
+        item.price = req.body.price;
+        item.date = req.body.date;
+        item.save(function(err) {
+            if (err) throw err;
+            console.log('updated successfully');
+        });});})
+
+
 router.post('/publishItem',(req,res)=>{
     var a = {storeItem:[]}
     let data = req.body
@@ -321,6 +336,19 @@ router.post('/payment',(req,res)=>{
 })
 router.post('/admin',(req,res)=>{
 
+})
+
+router.post('/adminDeletItem',(req,res)=>{
+    StoreItem.findOneAndRemove({_id: req.body._id}, (error,item) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{ 
+            if(item._id!= req.body.token){
+                res.status(402).send('item does not exist')
+            }else{ 
+                console.log("Deleted");
+        }}})
 })
 
 router.post('/getItem',(req,res)=>{

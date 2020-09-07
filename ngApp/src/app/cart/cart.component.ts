@@ -16,11 +16,14 @@ export class CartComponent implements OnInit {
   tokeninfo={token:''}
   costumer=[]
   obj = {}
+  total=0
   ngOnInit(): void {
+
     this.tokeninfo.token = localStorage.getItem("token")
     this._auth.putItemIntoCart( this.tokeninfo)
       .subscribe( // uses observiable //when using ths obserable, we either get a response or error
          res => {
+          this.total=0
            console.log(res)
            this.costumer=[]
            this.costumer.push(res)
@@ -30,8 +33,9 @@ export class CartComponent implements OnInit {
            var i;
            for (i = 0; i < res.cart.length; i++) {
             this.items.push(res.cart[i]);
+            this.total=this.total+res.cart[i].amount * res.cart[i].price
            } 
-           console.log(this.items)
+           console.log(this.total)
          },// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
          err =>console.log(err)// if get error, when show something to indicate the error
          )

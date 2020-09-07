@@ -25,6 +25,9 @@ export class AuthService { // this is a AuthService class
   private _adminItemManagePage = "http://localhost:3000/api/adminItemManagePage"
   private _publishItem = "http://localhost:3000/api/publishItem"
   private _getItem = "http://localhost:3000/api/getItem"
+  private _adminEditItem = "http://localhost:3000/api/adminEditItem"
+  private _adminDeletItem = "http://localhost:3000/api/adminDeletItem"
+  
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
     return this.http.post<any>(this._registerUrl,user)// in the function, we make a post request and returned the observerable. the first argument is the url, and the second argument is the user object/json 
@@ -93,5 +96,12 @@ export class AuthService { // this is a AuthService class
   verifyItem(id){
     return this.http.post<any>(this._getItem, id) 
   }
+ editItem(id){
+  return this.http.post<any>(this._adminEditItem, id) 
+  
+ }
+ adminDeleteItem(id){
+  return this.http.post<any>(this._adminDeletItem, id) 
+ }
 
 }

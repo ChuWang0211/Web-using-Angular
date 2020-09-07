@@ -36,6 +36,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { AdminItemManagmentPageComponent } from './admin-item-managment-page/admin-item-managment-page.component';
 import { CommonModule } from '@angular/common';
+import { AdminEditItemComponent } from './admin-edit-item/admin-edit-item.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CommonModule } from '@angular/common';
     AdminOrderManagementComponent,
     ChangePasswordComponent,
     ForgetPasswordComponent,
-    AdminItemManagmentPageComponent
+    AdminItemManagmentPageComponent,
+    AdminEditItemComponent
   ],
   imports: [
     BrowserModule,

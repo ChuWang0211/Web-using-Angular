@@ -1,0 +1,30 @@
+<div class="card-body" *ngFor="let event of ItemList"><!-- -->
+    <form class="form"><!-- form tag which do not need action and can form groups-->
+        <div class="form-group" ><!-- first form group-->
+            <label for="">Change name from "{{event.name}}" to</label>
+            <input [(ngModel)]="item.name" name="Item" type="text" class= "form-control rounded-0" required><!-- registerUserData is the object that contains the email and password values of the user about to be resigtered -->
+        </div>
+        <div class="form-group" ><!-- first form group-->
+            <label for="">Change description from "{{event.description}}" to</label>
+            <input [(ngModel)]="item.description" name="Item" type="text" class= "form-control rounded-0" required><!-- registerUserData is the object that contains the email and password values of the user about to be resigtered -->
+        </div>
+        <div class="form-group" ><!-- second form group-->
+            <label for="">Change imageUrl from "{{event.imageUrl}}" to</label>
+            <input [(ngModel)]="item.imageUrl" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group" ><!-- second form group-->
+            <label for="">Change date from "{{event.date}}" to</label>
+            <input [(ngModel)]="item.date" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group" ><!-- second form group-->
+            <label for="">Change amount from "{{event.amount}}" to</label>
+            <input [(ngModel)]="item.amount" name="Item" type="number" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group"><!-- second form group-->
+            <label for="">Change price from "${{event.price}}" to</label>
+            <input [(ngModel)]="item.price" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <button type = "button" class="btn btn-primary" (click)= editItem()>Confirm</button><!-- button is also in the form but it is not form group, it is single button that takes the colo . (click)="registerUser()" means when the user click on the register botton, it calls registerUser function-->
+        <button type = "button" class="btn btn-secondary float-right" (click)= cancel()>Cancel</button>
+    </form>
+</div>

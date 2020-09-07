@@ -62,10 +62,24 @@ export class AdminItemManagmentPageComponent implements OnInit {
       }),// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
       err =>console.log(err)// if get error, when show something to indicate the error
     }
-    editItem(itemId){
-      itemId()
+    canceladdingItem(){
+      this.add=false  
     }
-
+    editItem(itemId:String){
+      console.log(itemId)
+      // this._router.navigate(['/storeItemDetail' +decodeURI('/?_id=')+ itemId]) 
+      this._router.navigate(['/adminEditItem/'], { queryParams: { _id: itemId } });
+    }
+    deleteItem(itemId){
+      var id={_id:''}
+      id._id=itemId
+      this._auth.adminDeleteItem(id)
+      .subscribe(
+        res=>{
+          console.log(res)
+        }
+      )
+    }
   
 
 }
