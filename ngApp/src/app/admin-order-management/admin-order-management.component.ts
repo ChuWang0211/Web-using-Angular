@@ -29,7 +29,9 @@ export class AdminOrderManagementComponent implements OnInit {
         var i;
         console.log(Object.keys(res).length)
         for (var x in res) {
+          console.log(res[x.toString()])
           this.allUserList.push(res[x.toString()]);
+
           this.costumer_email[res[x.toString()].email]= []
        }
         console.log(this.costumer_email)

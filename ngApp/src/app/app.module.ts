@@ -34,6 +34,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminOrderManagementComponent } from './admin-order-management/admin-order-management.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { AdminItemManagmentPageComponent } from './admin-item-managment-page/admin-item-managment-page.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,10 +57,12 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     AdminComponent,
     AdminOrderManagementComponent,
     ChangePasswordComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    AdminItemManagmentPageComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,// once import on the above, you also need to add it here
     HttpClientModule,// once import on the above, you also need to add it here
     TranslateModule.forRoot({

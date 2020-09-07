@@ -21,6 +21,7 @@ import{AdminOrderManagementComponent} from './admin-order-management/admin-order
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
+import{AdminItemManagmentPageComponent} from'./admin-item-managment-page/admin-item-managment-page.component';
 import { AdminComponent } from './admin/admin.component';
 const routes: Routes = [// routes are array of objects
   { // add one default route
@@ -94,6 +95,9 @@ component: LoginComponent
   },{
     path:'admin',
     component:AdminComponent
+  },{
+    path: 'adminItemManagePage',
+    component:AdminItemManagmentPageComponent
   }
 ];
 

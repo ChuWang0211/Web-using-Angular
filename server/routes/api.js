@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')// ".." means one folder up
+const StoreItem = require('../models/itemSchema')// ".." means one folder up
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const user = require('../models/user')
@@ -303,13 +304,70 @@ router.post("/adminViewUserOrderHistory",(req,res)=>{
 }}
 )});
 
-
-router.post('/payment'),(req,res)=>{
-
+router.post('/publishItem',(req,res)=>{
+    var a = {storeItem:[]}
+    let data = req.body
+    let storeItems = new StoreItem(data)
+    storeItems.save((error, store)=>{ // mongo's way to save posted data
+    if(error){ // if error, the log to the console
+        console.log(error)
+    }else{console.log('success')
+    res.send(storeItems)
 }
-router.post('/admin'),(req,res)=>{
+})})
 
-}
+router.post('/payment',(req,res)=>{
+
+})
+router.post('/admin',(req,res)=>{
+
+})
+
+router.post('/getItem',(req,res)=>{
+    StoreItem.findOne({_id: req.body.token}, (error,item) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log(error)
+        } else{
+            if(item._id!= req.body.token){
+                res.status(402).send('item does not exist')
+            }else{ 
+                res.status(200).send(item) //send token back, can use subscribe }  
+        }}})
+})
+
+
+router.post('/adminItemManagePage',(req,res)=>{
+    var decoded = jwt.verify(req.body.token, 'secretKey');
+    console.log(decoded)
+    User.findOne({_id: decoded.subject}, (error, adminId) =>{ // find the user who has the extractly same email ID as the request email ID, 
+        //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
+        if(error){ // if there is an error, console.log(error)
+            console.log("this is an error")
+        } else{
+            // var a =  obj.userName
+            if(adminId._id!= decoded.subject){
+                res.send('this is not a valid user ID')
+            }else{ 
+                console.log(adminId.admin)
+                if (adminId.admin){
+                    StoreItem.find({}, function(err, items) {
+                        var itemMap = {};
+                    if(items!=null){
+                        items.forEach(function(item) {
+                            itemMap[item._id] = item;
+                        });
+                    }else{}
+
+                    
+                        res.send(itemMap);  
+                      });
+
+                }else{
+                    res.send('Not Admin')
+                }}}})})
+
+                
 router.post('/userHistoryOrders',(req,res)=>{
     User.findOne({email: req.body.email},(error,user) =>{ // find the user who has the extractly same email ID as the request email ID, 
         //the second parameter (error,user) is to give a response that either give an error or the user detail to eh user that match the condition
@@ -435,7 +493,7 @@ res.json(itemInfo_2)})
 router.get('/storePage',(req,res)=>{
     let storePage =[
         {
-            "_id":"2",
+            "_id":"1",
             "name":"CPU",
             "description":"i3-1000U: A CPU that never exists",
             "date":"1900-05-23T14:26:43.511Z",

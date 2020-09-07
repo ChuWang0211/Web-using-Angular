@@ -8,6 +8,7 @@ import{ Router} from '@angular/router';// import the router in order to navigate
 })
 export class AdminComponent implements OnInit {
 
+  ItemArray = {storeItem:[]}
   constructor(private _auth:AuthService, private _router: Router) { }
 
   ngOnInit(): void {
@@ -16,5 +17,10 @@ export class AdminComponent implements OnInit {
   toAllOrder(){
     this._router.navigate(['/adminViewUserOrderHistory'])
   }
+
+  itemPManagePage(){
+    this._router.navigate(['/adminItemManagePage'])
+  }
+
 
 }

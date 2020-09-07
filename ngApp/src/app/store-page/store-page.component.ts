@@ -8,23 +8,40 @@ import{ Router} from '@angular/router';
   styleUrls: ['./store-page.component.css']
 })
 export class StorePageComponent implements OnInit {
-  storePage = []
-  count=0;
+  itemId = ""
+  itemDetail=[]
+  obj = {}
+  id={token:''}
+  allItemList=[]
   constructor(private _eventServive:EventService,private _authService: AuthService, private _router:Router) { }
 
   ngOnInit(){
-    this._eventServive.getStorePage()
-    .subscribe(
-      res=>this.storePage=res,
-      err => console.log(err)
-    )
+    if(this.id.token==null){
+      console.log("please login")
+      this._router.navigate(['/login'])
+    }else{
+    this.id.token=localStorage.getItem('token')
+    this._authService.adminGetAllItem(this.id)
+    .subscribe( // uses observiable //when using ths obserable, we either get a response or error
+      res => {
+        this.obj={}
+        this.obj=Object.assign({},res)
+        var i;
+        for (var x in res) {
+          console.log(res[x.toString()])
+          this.allItemList.push(res[x.toString()]);
+          console.log( this.allItemList)  
+      
+      }}),// if get response, we can use the response which depends on the res.status(200).send(} in the api.js. in my case, I send token to here as response
+      err =>console.log(err)// if get error, when show something to indicate the error
+    }
   }
-  toStoreItemInfo(_id:string){
-    localStorage.setItem("idItemDetail",_id)
-    this._router.navigate(['/storeItemDetail']) 
-        console.log(_id)
+  toStoreItemInfo(itemId:String){
+    console.log(itemId)
+    // this._router.navigate(['/storeItemDetail' +decodeURI('/?_id=')+ itemId]) 
+    this._router.navigate(['/storeItemDetail/'], { queryParams: { _id: itemId } });
+    
 
-        
   }
 
 }

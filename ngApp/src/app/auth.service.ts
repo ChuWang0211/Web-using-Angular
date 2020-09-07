@@ -22,6 +22,9 @@ export class AuthService { // this is a AuthService class
   private _forgetPassword = "http://localhost:3000/api/forgetPassword"
   private _changePassword = "http://localhost:3000/api/changePassword"
   private _selectedUserOrderHistory = "http://localhost:3000/api/userHistoryOrders"
+  private _adminItemManagePage = "http://localhost:3000/api/adminItemManagePage"
+  private _publishItem = "http://localhost:3000/api/publishItem"
+  private _getItem = "http://localhost:3000/api/getItem"
   constructor(private http:HttpClient, private _router: Router) { }
   registerUser(user){ // this method which needs a user object(json) prameter (user object is the email and the password)
     return this.http.post<any>(this._registerUrl,user)// in the function, we make a post request and returned the observerable. the first argument is the url, and the second argument is the user object/json 
@@ -79,6 +82,16 @@ export class AuthService { // this is a AuthService class
   }
   updatePassword(token_password) {
     return this.http.post<any>(this._changePassword, token_password)
+  }
+  adminAddItem(item){
+    console.log(item)
+    return this.http.post<any>(this._publishItem, item) 
+  }
+  adminGetAllItem(token){
+    return this.http.post<any>(this._adminItemManagePage, token) 
+  }
+  verifyItem(id){
+    return this.http.post<any>(this._getItem, id) 
   }
 
 }

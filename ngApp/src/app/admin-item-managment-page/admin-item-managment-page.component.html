@@ -1,0 +1,44 @@
+<div class="col-md-4 mb-3" *ngFor="let event of allItemList"><!-- by default, boostrap have 12 colomn graps, col-md-4 means 4 colomn graps per event layout. in this case, 4/12=3 means 3 events per row -->
+    <!-- ngFor means a for loop that will make a event array. "let event of events" means for each event in the events array -->
+    <div class="card text-center" ><!--  for each event in the events array, we have the card, you can add body, title, footer anything you like -->
+        <div class="card-body"><!--  in this card, we have a title and a text(you can add more if you want to)-->
+            <h5 class="card-title">{{event.name}}</h5><!-- title  is the name of the event -->
+            <img src="{{event.imageUrl}}" width="200" height="200" class="img-thumbnail">
+            <p class ="card-text">{{event.description}}</p><!-- the text is the description of the event -->
+            <p class ="card-text">${{event.price}}</p><!-- the text is the description of the event -->
+            <a class="btn btn-dark text-white"  (click) ="editItem(event._id)" >Edit</a><!-- a button says buy tickets -->
+            <!--<input id="btntest" class="btn btn-dark" type="button" value="Check" onclick="window.location.href = 'http://www.google.com'" /> -->
+        </div>
+        <div class="card-footer text-muted"> {{event.date | date:'shortDate'}} </div><!-- in the card footer, is the data. "|" is a filter to formate data to shortdata -->
+    </div>
+</div>
+<div class="card-body"><!-- -->
+    <form class="form"><!-- form tag which do not need action and can form groups-->
+        <button   type = "button" class="btn btn-success floar-right"(click)= "toAdd()">Add Item</button>
+        <div class="form-group" *ngIf= "isAdd()"><!-- first form group-->
+            <label for="">Item Name</label>
+            <input [(ngModel)]="addItem.name" name="Item" type="text" class= "form-control rounded-0" required><!-- registerUserData is the object that contains the email and password values of the user about to be resigtered -->
+        </div>
+        <div class="form-group" *ngIf= "isAdd()"><!-- first form group-->
+            <label for="">Item Description</label>
+            <input [(ngModel)]="addItem.description" name="Item" type="text" class= "form-control rounded-0" required><!-- registerUserData is the object that contains the email and password values of the user about to be resigtered -->
+        </div>
+        <div class="form-group" *ngIf= "isAdd()"><!-- second form group-->
+            <label for="">imageUrl</label>
+            <input [(ngModel)]="addItem.imageUrl" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group" *ngIf= "isAdd()"><!-- second form group-->
+            <label for="">date</label>
+            <input [(ngModel)]="addItem.date" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group" *ngIf= "isAdd()"><!-- second form group-->
+            <label for="">amount</label>
+            <input [(ngModel)]="addItem.amount" name="Item" type="number" class= "form-control rounded-0" required>
+        </div>
+        <div class="form-group" *ngIf="isAdd()"><!-- second form group-->
+            <label for="">price</label>
+            <input [(ngModel)]="addItem.price" name="Item" type="text" class= "form-control rounded-0" required>
+        </div>
+        <button *ngIf= add type = "button" class="btn btn-success floar-right" (click)= publishItem()>Confirm</button><!-- button is also in the form but it is not form group, it is single button that takes the colo . (click)="registerUser()" means when the user click on the register botton, it calls registerUser function-->
+    </form>
+</div>
