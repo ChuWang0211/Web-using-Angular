@@ -278,7 +278,9 @@ router.post("/adminViewUserOrderHistory",(req,res)=>{
 }}
 )});
 
+router.post('/payment'), (req, res) => {
 
+}
 
 
 

@@ -5,38 +5,48 @@
         <link rel="stylesheet" href="cart.component.css">
     </head>
     <body>
-        <section class="container content-section">
-            <h2 class="section-header">CART</h2>
-            <div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
-            <div class="cart-items">
-            </div>
-        </section>
+      <section class="container content-section">
+        <h2 class="section-header">CART</h2>
+        <div class="cart-row">
+          <span class="cart-item cart-header cart-column">ITEM</span>
+          <span class="cart-price cart-header cart-column">PRICE</span>
+          <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+        <div class="cart-items">
+        </div>
+      </section>
 
-        <section class="container content-section" *ngFor="let event of items">
-            <h2 class="section-header"></h2>
-            <div class="shop-items" >
+      <section class="container content-section" *ngFor="let event of items">
+        <h2 class="section-header"></h2>
+        <div class="shop-items">
 
-                    <div style='display:table' >
-                        <div style='display:table-cell'>{{event.name}}</div>
-                        <img style='display:table-cell;'src="{{event.imageUrl}}" width="150px" height="150px" class="img-thumbnail" (click) ="toItemInfo(event._id)">
-                        <div style='display:table-cell'>{{event.price}}</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="removeOne(event)"><path d="M0 0h24v24H0z" fill="none" /><path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                        <a class = "card-text" style='display:table-cell'>{{event.amount}}</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="addOne(event)"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>  
-                    </div>
+          <div style='display:table'>
+            <div style='display:table-cell'>{{event.name}}</div>
+            <img style='display:table-cell;' src="{{event.imageUrl}}" width="150px" height="150px" class="img-thumbnail" (click)="toItemInfo(event._id)">
+            <div style='display:table-cell'>{{event.price}}</div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="removeOne(event)"><path d="M0 0h24v24H0z" fill="none" /><path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+            <a class="card-text" style='display:table-cell'>{{event.amount}}</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px" (click)="addOne(event)"><path d="M0 0h24v24H0z" fill="none" /><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+          </div>
 
-            </div>
-        </section>
-        <section class="container content-section">
-            <div class="cart-total" >
-                <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">$0</span>
-            </div>
-            <button class="btn btn-primary btn-purchase" (click)="purchase(items)" type="button">PURCHASE</button>
-        </section>
+        </div>
+      </section>
+      <!--<section class="container content-section">
+        <div class="cart-total">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price">$0</span>
+        </div>
+        <button class="btn btn-primary btn-purchase" (click)="purchase(items)" type="button">PURCHASE</button>
+      </section>-->
+      <div *ngIf="!paidFor">
+        <h1>Buy this Couch - ${{ product.price }} OBO</h1>
+      </div>
+
+
+      <div *ngIf=paidFor>
+        <h1>Yay, you bought a sweet couch!</h1>
+      </div>
+
+      <div #paypal></div>
     </body>
 </html>
