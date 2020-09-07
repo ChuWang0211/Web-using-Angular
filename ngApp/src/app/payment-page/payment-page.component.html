@@ -1,12 +1,18 @@
-<div class="card text-center">
-    <div class="col-md-4 mb-3">
-  <ng-payment-card >
-    <input type="text" ng-model="blah" payments-validate="VALIDATION_TYPE" />
-    <input type="text" ng-model="number" payments-validate="card" />
-    <input type="text" ng-model="expiry" payments-validate="expiry" />
-    <input type="text" ng-model="cvc" payments-validate="cvc" />
-    <input type="text" payments-format="FORMATTING_TYPE" />
-  </ng-payment-card>
-  </div>
-  </div>
-  
+
+<div *ngIf="!paidFor">
+  <h1>Buy this Couch - ${{ product.price }} OBO</h1>
+</div>
+
+
+<div *ngIf=paidFor>
+  <h1>Yay, you bought a sweet couch!</h1>
+</div>
+
+<div #paypal></div>
+
+
+<script>
+  paypal.Buttons().render('#paypal-button-container');
+  alert('Transaction completed by ' + details.payer.name.given_name);
+    // This function displays Smart Payment Buttons on your web page.
+</script>

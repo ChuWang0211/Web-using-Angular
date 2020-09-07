@@ -20,6 +20,7 @@ import{OrderHistoryComponent} from './order-history/order-history.component';
 import{AdminOrderManagementComponent} from './admin-order-management/admin-order-management.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
 const routes: Routes = [// routes are array of objects
   { // add one default route
     path:'', // path is empty because we want user to be redirected to the events route anytime they enter the mainpage (localhost:3000)
@@ -85,6 +86,10 @@ component: LoginComponent
   {
    path: 'forgetPassword',
    component:ForgetPasswordComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentPageComponent
   }
 ];
 
