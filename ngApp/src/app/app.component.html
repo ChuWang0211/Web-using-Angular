@@ -31,7 +31,7 @@
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/cart" routerLinkActive="active">{{'home.cart'| translate}}</a>
 
   </ul>
-  <ul class="navbar-nav ">
+  <ul class="navbar-nav " *ngIf="_authService.loggedIn()" >
     <a class="nav-item dropdown nav-link"> 
       <a class="nav-link dropdown-toggle" id="Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-graduation-cap mr-1"></i>{{'home.user'| translate}}

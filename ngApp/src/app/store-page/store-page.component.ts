@@ -18,7 +18,7 @@ export class StorePageComponent implements OnInit {
 
   ngOnInit(){
 
-    if(this.id.token==null){
+    if(localStorage.getItem('token')==null){
       console.log("please login")
       this._router.navigate(['/login'])
     }else{

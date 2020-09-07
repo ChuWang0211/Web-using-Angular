@@ -18,7 +18,7 @@ export class AdminEditItemComponent implements OnInit {
     description:"",
     date:"",
     imageUrl:"",
-    amount: Number,
+    amount: 1,
     price:""}
   constructor(private _eventServive:EventService,private _auth: AuthService, private _router:Router, private route: ActivatedRoute) {
   }
@@ -39,14 +39,14 @@ export class AdminEditItemComponent implements OnInit {
   }
 
   editItem(){
-    console.log(this.ItemList[0])
+    console.log(this.item.amount)
     if(this.item.name != ''){
       this.ItemList[0].name = this.item.name
     }else{}
     if(this.item.description != ''){
       this.ItemList[0].description = this.item.description
     }else{}
-    if(this.item.amount != null){
+    if(this.item.amount !== null){
       this.ItemList[0].amount = this.item.amount
     }else{}
     if(this.item.price != ''){

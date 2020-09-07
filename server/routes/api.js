@@ -378,7 +378,7 @@ router.post('/adminItemManagePage',(req,res)=>{
                 res.send('this is not a valid user ID')
             }else{ 
                 console.log(adminId.admin)
-                if (adminId.admin){
+
                     StoreItem.find({}, function(err, items) {
                         var itemMap = {};
                     if(items!=null){
@@ -389,11 +389,7 @@ router.post('/adminItemManagePage',(req,res)=>{
 
                     
                         res.send(itemMap);  
-                      });
-
-                }else{
-                    res.send('Not Admin')
-                }}}})})
+                      });}}})})
 
                 
 router.post('/userHistoryOrders',(req,res)=>{
