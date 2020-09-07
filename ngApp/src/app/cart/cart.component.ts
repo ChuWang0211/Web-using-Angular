@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
     description: 'used couch, decent condition',
     //img: 'assets/couch.jpg'
   };
-
+  total = 0
 
   paidFor = false;
 
