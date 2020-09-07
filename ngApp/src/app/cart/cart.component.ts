@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
   product = {
-    price: 1.77,
+    price: 0,
     description: 'used couch, decent condition',
     //img: 'assets/couch.jpg'
   };
@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
                 description: this.product.description,
                 amount: {
                   currency_code: 'USD',
-                  value: this.product.price
+                  value: this.total
                 }
               }
             ]
@@ -49,6 +49,7 @@ export class CartComponent implements OnInit {
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           this.paidFor = true;
+          this._router.navigate(['/payment'])
           console.log(order);
         },
         onError: err => {
