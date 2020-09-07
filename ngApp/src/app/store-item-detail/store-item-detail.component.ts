@@ -63,8 +63,9 @@ putItemInCart(item){
               .subscribe(
                 res => {
                   console.log(res)})}
-            else {bo=false}}}
-          else { }                
+            else {}}}
+          else {    
+          }                
           if(bo==false){
             this.obj['cart'].push(item)
             bo=true
